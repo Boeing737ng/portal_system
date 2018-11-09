@@ -5,4 +5,8 @@ class User {
         this.pwd = pwd
         this.type = type
     }
+    // 회원인증
+    authentication(id, pwd) {
+
+    }
 }
