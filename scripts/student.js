@@ -5,7 +5,7 @@ class Student extends User {
         this.department = department
         this.student_num = student_num
         this.student_state = student_state
-        state_history = []
+        this.state_history = []
     }
     // Getter
     getName() { return this.name }
@@ -42,7 +42,7 @@ class Student extends User {
 
     // Saves student's state history
     saveStateChangedHistory(new_state) {
-        state_history.push(new_state)
+        this.state_history.push(new_state)
     }
 
 }
