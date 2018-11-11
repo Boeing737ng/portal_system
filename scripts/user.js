@@ -9,4 +9,8 @@ class User {
     authentication(id, pwd) {
 
     }
+
+    signOut() {
+        
+    }
 }

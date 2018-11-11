@@ -6,4 +6,8 @@ class Finance extends Semester {
         this.scholarship = scholarship
         this.is_scholarship_student = is_scholarship_student
     }
+
+    modifyScholarshipState() {
+        
+    }
 }

@@ -30,4 +30,12 @@ class Manager extends User {
     registerNewUser() {
 
     }
+    
+    registerSubject() {
+        
+    }
+
+    removeSubject() {
+
+    } 
 }
