@@ -14,6 +14,26 @@ class Student extends User {
     getStudentNum() { return this.student_num }
     getStudentState() { return this.student_state }
 
+    onRequestMyInfo() {
+
+    }
+
+    onRequestLectureTimeTable() {
+
+    }
+
+    onRequestLectureApplication() {
+
+    }
+
+    onRequestSubjectGrade() {
+
+    }
+
+    onRequestFinancePage() {
+
+    }
+
     // Change student's current state
     changeStudentState(new_state) {
         this.student_state = new_state

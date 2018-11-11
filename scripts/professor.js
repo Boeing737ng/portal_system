@@ -4,4 +4,24 @@ class Professor extends User {
         this.department = department
         this.subject = subject
     }
+
+    onRequestGradeManagement() {
+
+    }
+
+    onReuqestLecturePlanManagement() {
+
+    }
+
+    registerGrade() {
+
+    }
+
+    registerLecturePlan() {
+
+    }
+
+    removeLecturePlan() {
+        
+    }
 }

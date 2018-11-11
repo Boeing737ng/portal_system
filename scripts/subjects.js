@@ -7,4 +7,20 @@ class Subjects {
         this.professor = professor
         this.subject_grade = subject_grade
     }
+
+    openRegisterPage() {
+
+    }
+
+    openModifyPage() {
+        
+    }
+
+    registerSubject() {
+        
+    }
+
+    removeSubject() {
+
+    }
 }
