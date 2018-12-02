@@ -33,14 +33,11 @@ class User {
         var isStudent = document.getElementById('isStudent');
         if(isStudent.checked) {
             let student = new Student(
-                userInfo[0].value,
-                userInfo[1].value,
-                userInfo[2].value,
-                userInfo[3].value,
-                userInfo[4].value,
-                userInfo[5].value,
-                userInfo[6].value,
-                userInfo[7].value
+                userInfo[0].value,//이름
+                userInfo[1].value,//학번
+                userInfo[3].value,//생년월일
+                userInfo[4].value,//소속학과
+                "student"
             );
             firebase.auth().createUserWithEmailAndPassword(
                 student.getStudentNum() + '@portal.com', student.getStudentNum()
@@ -62,13 +59,11 @@ class User {
             });
         } else {
             let professor = new Professor(
-                userInfo[0].value,
-                userInfo[1].value,
-                userInfo[2].value,
-                userInfo[3].value,
-                userInfo[4].value,
-                userInfo[5].value,
-                userInfo[6].value
+                userInfo[0].value,//이름
+                userInfo[1].value,//교번
+                userInfo[2].value,//생년월일
+                userInfo[3].value,//소속학과
+                "professor"
             );
             firebase.auth().createUserWithEmailAndPassword(
                 professor.getProfessorNo() + '@portal.com', professor.getProfessorNo()

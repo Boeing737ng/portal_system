@@ -1,10 +1,10 @@
 class Student extends User {
-    constructor(name, id, pwd, type, birthDate, department, studentNo, studentState) {
-        super(name, id, pwd, type, birthDate)
+    constructor(name, studentNo, birthDate, department, type) {
+        super(name, studentNo, studentNo, type, birthDate)
 
         this.department = department
         this.studentNo = studentNo
-        this.studentState = studentState
+        this.studentState = "attending";
 
         this.stateHistory = []
     }
