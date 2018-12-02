@@ -21,11 +21,13 @@ class User {
     authentication(id, pwd) {
         firebase.auth().signInWithEmailAndPassword(id, pwd)
         .then(function(success) {
-            console.log(success)
+            console.log(success);
+            window.location.href = 'mainView.html';
         })
         .catch(function(error) {
             var errorMessage = error.message;
-            console.log(errorMessage)
+            console.log(errorMessage);
+            alert('아이디 또는 비밀번호를 확인하세요.');
         });
     }
 
