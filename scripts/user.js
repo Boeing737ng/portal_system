@@ -91,7 +91,17 @@ class User {
     }
 
     signOut() {
-        
+        if(confirm('로그아웃 하시겠습니까?')){
+            firebase.auth().signOut()
+                .then(function (success) {
+                    console.log(success);
+                    window.location.href = 'index.html';
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    noneLoading();
+                })
+        }
     }
 }
 var user = new User;
