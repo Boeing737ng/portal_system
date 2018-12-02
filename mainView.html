@@ -6,79 +6,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
     <!-- nav - login info -->
     <div id="nav-container">
         <div id="nav-content-container">
-            <div id="id-container">
+            <div class="nav-content" id="id-container">
+                
+            </div>
+            <div class="nav-content" id="user-type-container">
 
             </div>
-            <div id="logout-container">
+            <div class="nav-content" id="logout-container">
 
             </div>
         </div>
     </div>
-    <!-- side bar -->
-    <div id="sidebar-container">
-        <!-- 관리자 기능 -->
-        <div id="admin-container">
-            <!-- 교과목 관리 -->
-            <div id="manage-subject-container">
+    <!-- content-container -->
+    <div id="content-container">
+        <!-- side bar -->
+        <div id="sidebar-container">
+            <!-- 관리자 기능 -->
+            <div id="admin-container">
+                <!-- 교과목 관리 -->
+                <div class="sidebar-content" id="manage-subject-container">
 
-            </div>
-            <!-- 학생 신상정보 조회 -->
-            <div id="manage-student-info-container">
+                </div>
+                <!-- 학생 신상정보 조회 -->
+                <div class="sidebar-content" id="manage-student-info-container">
 
-            </div>
-            <!-- 학번/교번 부여 -->
-            <div id="allocate-new-user-container">
+                </div>
+                <!-- 학번/교번 부여 -->
+                <div class="sidebar-content" id="allocate-new-user-container">
 
+                </div>
             </div>
+            <!-- 관리자 기능 끝 -->
+
+            <!-- 교수 기능 -->
+            <div id="prof-container">
+                <!-- 성적처리 -->
+                <div class="sidebar-content" id="manage-grade-container">
+
+                </div>
+                <!-- 강의계획서 관리 -->
+                <div class="sidebar-content" id="manage-subject-plan-container">
+
+                </div>
+            </div>
+            <!-- 교수 기능 끝 -->
+
+            <!-- 학생 기능 -->
+            <div id="student-container">
+                <!-- 신상정보 조회 -->
+                <div class="sidebar-content" id="manage-user-container">
+
+                </div>
+                <!-- 강의 시간표 조회 -->
+                <div class="sidebar-content" id="view-timetable-container">
+
+                </div>
+                <!-- 수강신청 -->
+                <div class="sidebar-content" id="apply-subject-container">
+
+                </div>
+                <!-- 성적조회 -->
+                <div class="sidebar-content" id="view-subject-score-container">
+
+                </div>
+                <!-- 등록금 조회 -->
+                <div class="sidebar-content" id="view-tuition-fee-container">
+
+                </div>
+            </div>
+            <!-- 학생 기능 끝 -->
+
         </div>
-        <!-- 관리자 기능 끝 -->
-
-        <!-- 교수 기능 -->
-        <div id="prof-container">
-            <!-- 성적처리 -->
-            <div id="manage-grade-container">
-
-            </div>
-            <!-- 강의계획서 관리 -->
-            <div id="manage-subject-plan-container">
-
-            </div>
+        <!--
+     -->
+        <div id="main-view-container">
+            <!-- <span>hello</span> -->
         </div>
-        <!-- 교수 기능 끝 -->
-
-        <!-- 학생 기능 -->
-        <div id="student-container">
-            <!-- 신상정보 조회 -->
-            <div id="manage-user-container">
-
-            </div>
-            <!-- 강의 시간표 조회 -->
-            <div id="view-timetable-container">
-
-            </div>
-            <!-- 수강신청 -->
-            <div id="apply-subject-container">
-
-            </div>
-            <!-- 성적조회 -->
-            <div id="view-subject-score-container">
-
-            </div>
-            <!-- 등록금 조회 -->
-            <div id="view-tuition-fee-container">
-
-            </div>
-        </div>
-        <!-- 학생 기능 끝 -->
-
     </div>
-    <!-- main view -->
+
 </body>
 
 </html>

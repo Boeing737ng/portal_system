@@ -12,7 +12,7 @@ class User {
     }
     // 회원인증
     authentication(id, pwd) {
-
+        
     }
 
     signOut() {
