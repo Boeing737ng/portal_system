@@ -13,4 +13,14 @@ class User {
     signOut() {
         
     }
+
+    registerAdmin() {
+        firebase.database().ref('users/' + "admin").set({
+          id: "admin",
+          password: "admin",
+          name: "admin",
+          type: "admin"
+        });
+    }
 }
+var test = new User;
