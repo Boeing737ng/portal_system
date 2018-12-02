@@ -1,18 +1,20 @@
 class Student extends User {
-    constructor(name, id, pwd, type, department, student_num, student_state) {
-        super(name, id, pwd, type)
+    constructor(name, id, pwd, type, birthDate, department, studentNo, studentState) {
+        super(name, id, pwd, type, birthDate)
 
         this.department = department
-        this.student_num = student_num
-        this.student_state = student_state
-        this.state_history = []
+        this.studentNo = studentNo
+        this.studentState = studentState
+
+        this.stateHistory = []
     }
     // Getter
     getName() { return this.name }
-    getType() { return this.type }
-    getDepartment() { return this.departmen }
-    getStudentNum() { return this.student_num }
-    getStudentState() { return this.student_state }
+    getStudentNo() { return this.studentNo }
+    getDepartment() { return this.department }
+    getBirthDate() { return this.birthDate }
+    getStudentState() { return this.studentState }
+    getUserType() { return this.type }
 
     onRequestMyInfo() {
 
@@ -35,14 +37,14 @@ class Student extends User {
     }
 
     // Change student's current state
-    changeStudentState(new_state) {
-        this.student_state = new_state
-        this.saveStateChangedHistory(new_state)
+    changeStudentState(newState) {
+        this.studentState = newState
+        this.saveStateChangedHistory(newState)
     }
 
     // Saves student's state history
-    saveStateChangedHistory(new_state) {
-        this.state_history.push(new_state)
+    saveStateChangedHistory(newState) {
+        this.stateHistory.push(newState)
     }
 
 }
