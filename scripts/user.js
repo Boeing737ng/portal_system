@@ -63,7 +63,7 @@ class User {
                 userEmail, student.getStudentNum()
             ).then(function(success) {
                 firebase.database().ref(
-                    'users/' + 'student/' + userEmail
+                    'users/student/' + userEmail
                 ).set({
                     name: student.getName(),
                     type: student.getUserType(),
@@ -90,7 +90,7 @@ class User {
                 userEmail, professor.getProfessorNo()
             ).then(function(success) {
                 firebase.database().ref(
-                    'users/' + 'professor/' + userEmail
+                    'users/professor/' + userEmail
                 ).set({
                     name: professor.getName(),
                     type: professor.getUserType(),
