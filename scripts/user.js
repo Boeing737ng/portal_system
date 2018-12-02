@@ -18,6 +18,22 @@ class User {
         registerUser(userInfo);
     }
 
+    createStudentNo() {
+        var studentNo;
+        firebase.database().ref().child('users/student').on('value', function(snapshot) {
+            studentNo = 201802000 + snapshot.numChildren();
+        });
+        document.getElementById('studentNo').value = studentNo.toString();
+    }
+
+    createProfessorNo() {
+        var professorNo;
+        firebase.database().ref().child('users/professor').on('value', function(snapshot) {
+            professorNo = 201801000 + snapshot.numChildren();
+        });
+        rdocument.getElementById('professorNo').value = professorNo.toString();
+    }
+
     authentication(id, pwd) {
         firebase.auth().signInWithEmailAndPassword(id, pwd)
         .then(function(success) {
@@ -33,6 +49,7 @@ class User {
 
     registerUser(userInfo) {
         var isStudent = document.getElementById('isStudent');
+        var userEmail;
         if(isStudent.checked) {
             let student = new Student(
                 userInfo[0].value,//이름
@@ -41,11 +58,12 @@ class User {
                 userInfo[4].value,//소속학과
                 "student"
             );
+            userEmail = student.getStudentNum() + '@portal.com';
             firebase.auth().createUserWithEmailAndPassword(
-                student.getStudentNum() + '@portal.com', student.getStudentNum()
+                userEmail, student.getStudentNum()
             ).then(function(success) {
                 firebase.database().ref(
-                    'users/' + 'student/' + student.getName()
+                    'users/student/' + userEmail
                 ).set({
                     name: student.getName(),
                     type: student.getUserType(),
@@ -67,11 +85,12 @@ class User {
                 userInfo[3].value,//소속학과
                 "professor"
             );
+            userEmail = professor.getProfessorNo + '@portal.com';
             firebase.auth().createUserWithEmailAndPassword(
-                professor.getProfessorNo() + '@portal.com', professor.getProfessorNo()
+                userEmail, professor.getProfessorNo()
             ).then(function(success) {
                 firebase.database().ref(
-                    'users/' + 'professor/' + professor.getName()
+                    'users/professor/' + userEmail
                 ).set({
                     name: professor.getName(),
                     type: professor.getUserType(),
@@ -88,7 +107,16 @@ class User {
     }
 
     signOut() {
-        
+        if(confirm('로그아웃 하시겠습니까?')){
+            firebase.auth().signOut()
+                .then(function (success) {
+                    console.log(success);
+                    window.location.href = 'index.html';
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        }
     }
 }
-var test = new User;
+var user = new User;
