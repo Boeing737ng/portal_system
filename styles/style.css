@@ -1,0 +1,75 @@
+/* body */
+html, body{
+    margin:0;
+    width: 100%;
+    height: 100%;    
+    overflow:auto;
+}
+* {
+    box-sizing: border-box;
+}
+/* nav-container */
+#nav-container{
+    border:1px solid blue;
+    width: 100%;
+    height: 50px;
+}
+#nav-content-container{
+    float:right;
+    height:100%;
+    border:1px solid green;
+}
+.nav-content{
+    width:150px;
+    height:100%;
+    border:1px dotted green;
+    display:inline-block;
+}
+/* nav-container end */
+
+
+
+/* content-container */
+#content-container{
+    border:1px solid blue;
+    width: 100%;
+    height: calc(100% - 50px);
+}
+
+/* sidebar-container */
+#sidebar-container{
+    border:1px solid red;
+    width: 150px;
+    height: 100%;
+    display: inline-block;
+}
+#admin-container{
+    width:100%;
+    border:3px dotted green;
+    margin:20px auto;
+}
+#prof-container{
+    width:100%;
+    border:3px dotted green;
+    margin:20px auto;
+}
+#student-container{
+    width:100%;
+    border:3px dotted green;
+    margin:20px auto;
+}
+.sidebar-content{
+    width:100%;
+    height:50px;
+    border:1px dotted green;
+}
+/* sidebar-container end */
+
+
+/* main-view-container */
+#main-view-container{
+    border:1px solid red;
+    width: calc(100% - 150px);
+    height: 100%;
+    display: inline-block;
+}
