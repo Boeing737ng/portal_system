@@ -99,7 +99,6 @@ class User {
                 })
                 .catch(function (error) {
                     console.log(error);
-                    noneLoading();
                 })
         }
     }
