@@ -33,6 +33,7 @@ class User {
 
     registerUser(userInfo) {
         var isStudent = document.getElementById('isStudent');
+        var userEmail;
         if(isStudent.checked) {
             let student = new Student(
                 userInfo[0].value,//이름
@@ -41,11 +42,12 @@ class User {
                 userInfo[4].value,//소속학과
                 "student"
             );
+            userEmail = student.getStudentNum() + '@portal.com';
             firebase.auth().createUserWithEmailAndPassword(
-                student.getStudentNum() + '@portal.com', student.getStudentNum()
+                userEmail, student.getStudentNum()
             ).then(function(success) {
                 firebase.database().ref(
-                    'users/' + 'student/' + student.getName()
+                    'users/' + 'student/' + userEmail
                 ).set({
                     name: student.getName(),
                     type: student.getUserType(),
@@ -67,11 +69,12 @@ class User {
                 userInfo[3].value,//소속학과
                 "professor"
             );
+            userEmail = professor.getProfessorNo + '@portal.com';
             firebase.auth().createUserWithEmailAndPassword(
-                professor.getProfessorNo() + '@portal.com', professor.getProfessorNo()
+                userEmail, professor.getProfessorNo()
             ).then(function(success) {
                 firebase.database().ref(
-                    'users/' + 'professor/' + professor.getName()
+                    'users/' + 'professor/' + userEmail
                 ).set({
                     name: professor.getName(),
                     type: professor.getUserType(),
@@ -91,4 +94,4 @@ class User {
         
     }
 }
-var test = new User;
+var user = new User;
