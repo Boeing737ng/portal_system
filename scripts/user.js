@@ -5,6 +5,11 @@ class User {
         this.pwd = pwd
         this.type = type
     }
+    handleLoginData() {
+        var id = document.getElementById("id");
+        var pwd = document.getElementById("pwd");
+        authentication(id, pwd);
+    }
     // 회원인증
     authentication(id, pwd) {
 
