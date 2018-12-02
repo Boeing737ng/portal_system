@@ -18,6 +18,22 @@ class User {
         registerUser(userInfo);
     }
 
+    createStudentNo() {
+        var studentNo;
+        firebase.database().ref().child('users/student').on('value', function(snapshot) {
+            studentNo = 201802000 + snapshot.numChildren();
+        });
+        document.getElementById('studentNo').value = studentNo.toString();
+    }
+
+    createProfessorNo() {
+        var professorNo;
+        firebase.database().ref().child('users/professor').on('value', function(snapshot) {
+            professorNo = 201801000 + snapshot.numChildren();
+        });
+        rdocument.getElementById('professorNo').value = professorNo.toString();
+    }
+
     authentication(id, pwd) {
         firebase.auth().signInWithEmailAndPassword(id, pwd)
         .then(function(success) {
