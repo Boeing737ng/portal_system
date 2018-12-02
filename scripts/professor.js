@@ -1,6 +1,6 @@
 class Professor extends User {
-    constructor(name, id, pwd, type, birthDate, department, professorNo) {
-        super(name, id, pwd, type, birthDate)
+    constructor(name, professorNo, birthDate, department, type) {
+        super(name, professorNo, professorNo, type, birthDate)
 
         this.professorNo = professorNo
         this.department = department
