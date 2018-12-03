@@ -38,3 +38,16 @@ function getUserType() {
         }); 
     }
 }
+
+function viewSelectedSection(index) {
+    var section = document.getElementsByClassName('main-view-content');
+    for(var i = 0; i < section.length; i++) {
+        section[i].style.display = 'none';
+    }
+    section[index].style.display = 'block';
+}
+
+$('.option-button').on('click', function() {
+    var pageIndex = $('.option-button').index(this);
+    viewSelectedSection(pageIndex);
+});
