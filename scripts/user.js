@@ -15,23 +15,24 @@ class User {
 
     handleCreateUserData() {
         var userInfo = document.getElementsByClassName('userInfo');
-        registerUser(userInfo);
+        this.registerUser(userInfo);
     }
 
-    createStudentNo() {
-        var studentNo;
-        firebase.database().ref().child('users/student').on('value', function(snapshot) {
-            studentNo = 201802000 + snapshot.numChildren();
-        });
-        document.getElementById('studentNo').value = studentNo.toString();
-    }
+    createUserNo() {
+        var userNo;
+        var isStudent = document.getElementById('is-student');
+        if(isStudent.checked) {
+            firebase.database().ref().child('users/student').on('value', function(snapshot) {
+                userNo = 201802000 + snapshot.numChildren();
+                document.getElementById('user-number').value = userNo.toString();
+            });
+        } else {
+            firebase.database().ref().child('users/professor').on('value', function(snapshot) {
+                userNo = 201800 + snapshot.numChildren();
+                document.getElementById('user-number').value = userNo.toString();
+            });
+        }
 
-    createProfessorNo() {
-        var professorNo;
-        firebase.database().ref().child('users/professor').on('value', function(snapshot) {
-            professorNo = 201801 + snapshot.numChildren();
-        });
-        rdocument.getElementById('professorNo').value = professorNo.toString();
     }
 
     authentication(id, pwd) {
@@ -48,19 +49,19 @@ class User {
     }
 
     registerUser(userInfo) {
-        var isStudent = document.getElementById('isStudent');
+        var isStudent = document.getElementById('is-student');
         var userEmail;
         if(isStudent.checked) {
             let student = new Student(
                 userInfo[0].value,//이름
                 userInfo[1].value,//학번
-                userInfo[3].value,//생년월일
-                userInfo[4].value,//소속학과
+                userInfo[2].value,//생년월일
+                userInfo[3].value,//소속학과
                 "student"
             );
-            userEmail = student.getStudentNum() + '@portal.com';
+            userEmail = student.getStudentNo() + '@portal.com';
             firebase.auth().createUserWithEmailAndPassword(
-                userEmail, student.getStudentNum()
+                userEmail, student.getStudentNo()
             ).then(function(success) {
                 firebase.database().ref(
                     'users/student/' + userInfo[1].value
