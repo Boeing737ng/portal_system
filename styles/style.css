@@ -8,6 +8,15 @@ html, body{
 * {
     box-sizing: border-box;
 }
+table {
+    text-align: center;
+    border-collapse: collapse;
+    width: fit-content;
+}
+table td {
+    border: 1px solid black;
+    padding: 10px;
+}
 button {
     cursor: pointer;
 }
@@ -120,10 +129,7 @@ button:focus {
     height:calc(100% - 50px);
 }
 /********** 학생 신상정보 페이지 **********/
-#students-list {
-    text-align: center;
-    width: fit-content;
-}
+
 
 /********** 학번/교번 생성 페이지 **********/
 .register-user-container {
@@ -132,3 +138,23 @@ button:focus {
     padding: 50px;
 }
 
+/********** 과목관리 페이지 **********/
+.subject-management {
+    height: 100%;
+}
+.switch-box {
+    display: none;
+    text-align: center;
+    width: fit-content;
+}
+.swich-box {
+    display: none;
+}
+.modify-input-field {
+    display: inline-block;
+    vertical-align: top;
+    padding: 30px;
+}
+.modify-input-field:first-child {
+    border-right: 1px solid black;
+}
