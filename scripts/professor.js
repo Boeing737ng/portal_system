@@ -12,6 +12,7 @@ class Professor extends User {
     getDepartment() { return this.department }
     getSubjectList() { return this.subject }
     getUserType() { return this.type }
+    getBirthDate() { return this.birthDate }
 
     onRequestGradeManagement() {
 
