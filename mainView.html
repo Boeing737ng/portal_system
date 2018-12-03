@@ -115,11 +115,30 @@
             </div>
             <!-- view : 학생 신상 정보 조회-->
             <div class="main-view-content" id="view-manage-student-info">
-
+                <table id="students-list">
+                    
+                </table>
             </div>
             <!-- view : 학번/교번부여 -->
             <div class="main-view-content" id="view-allocate-new-user">
-
+                <div class="register-user-container vertical-center horizontal-center">
+                    <div>
+                        <div>
+                            <input class="choose-type" id="is-student" type="radio" name="user-type" checked>
+                            <label for="is-student">학생</label>
+                        </div>
+                        <div>
+                            <input class="choose-type" id="is-professor" type="radio" name="user-type">
+                            <label for="is-professor">교수</label>
+                        </div>
+                    </div>
+                    <br>
+                    이름<input type="text" class="userInfo"><br>
+                    학번<input id="user-number" type="text" class="userInfo" disabled><button onclick="user.createUserNo();">학번/교번 생성</button><br>
+                    생일<input type="text" class="userInfo"><br>
+                    학과<input type="text" class="userInfo"><br>
+                    <button onclick="user.handleCreateUserData();">추가</button>
+                </div>
             </div>
 
             <!-- view : 성적처리 -->
