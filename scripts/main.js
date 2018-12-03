@@ -67,4 +67,14 @@ $(document).ready(function() {
     $('.choose-type').click(function() {
         $('.userInfo').val('');
     });
+    $('#add-subject-button').on('click', function() {
+        $('#register-subject-section').css('display','block');
+        $('#modify-subject-section').css('display','none');
+    });
+    $('#modifiy-subject-button').on('click', function() {
+        document.getElementById("subjects-list").innerHTML = '';
+        $('#register-subject-section').css('display','none');
+        $('#modify-subject-section').css('display','block');
+        subject.viewSubjectsDetail();
+    });
 });

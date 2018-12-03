@@ -30,6 +30,35 @@ class Subject extends Semester {
         });
     }
 
+    removeSubject() {
+        var subjectNo = document.getElementById("del-subject-no").value;
+        if(subjectNo != '') {
+            firebase.database().ref('subjects/').child(subjectNo).remove()
+            .then(function(success) {
+                $('#del-subject-no').val('');
+                subject.viewSubjectsDetail();
+            });
+        } else {
+            alert('과목번호를 입력해주세요.');
+        }
+    }
+
+    modifySubject() {
+        var subjectInfo = document.getElementsByClassName('m-subject-info');
+        var modifiedSubjectInfo = {
+            number: subjectInfo[0].value,
+            name: subjectInfo[1].value,
+            time: subjectInfo[2].value,
+            professor: subjectInfo[3].value,
+            grade: subjectInfo[4].value,
+            year: subjectInfo[5].value,
+            semester: subjectInfo[6].value,
+        }
+        firebase.database().ref('/subjects/' + subjectInfo[0].value + '/').update(modifiedSubjectInfo);
+        $('.m-subject-info').val('');
+        this.viewSubjectsDetail();
+    }
+
     registerSubject(subjectInfo) {
         let subject = new Subject(
             subjectInfo[0].value,//과목명
@@ -54,6 +83,57 @@ class Subject extends Semester {
             alert("과목정보가 저장되었습니다.");
             $('.subject-info').val('');
         });
+    }
+
+    viewSubjectsDetail() {
+        document.getElementById("subjects-list").innerHTML = '';
+        subject.createTableHeader();
+        firebase.database().ref().child('subjects').on('value', function(snapshot) {
+            snapshot.forEach(function(element) {
+                subject.createTableDataTag(element.val());
+            })
+        });
+    }
+
+    createTableHeader() {
+        var obj = new Object();
+        obj.name = '과목명';
+        obj.number  = '과목번호';
+        obj.time = '강의시간';
+        obj.professor = '담당교수'
+        obj.grade = '학점'
+        obj.year = '연도'
+        obj.semester = '학기'
+        this.createTableDataTag(obj)
+    }
+
+    createTableDataTag(data) {
+        var table = document.getElementById('subjects-list');
+        var row = document.createElement('tr');
+        var nameTag = document.createElement('td');
+        var numberTag = document.createElement('td');
+        var timeTag = document.createElement('td');
+        var professorTag = document.createElement('td');
+        var gradeTag = document.createElement('td');
+        var yearTag = document.createElement('td');
+        var semesterTag = document.createElement('td');
+
+        nameTag.textContent = data.name;
+        numberTag.textContent = data.number;
+        timeTag.textContent = data.time;
+        professorTag.textContent = data.professor;
+        gradeTag.textContent = data.grade;
+        yearTag.textContent = data.year;
+        semesterTag.textContent = data.semester;
+
+        row.appendChild(nameTag);
+        row.appendChild(numberTag);
+        row.appendChild(timeTag);
+        row.appendChild(professorTag);
+        row.appendChild(gradeTag);
+        row.appendChild(yearTag);
+        row.appendChild(semesterTag);
+        table.appendChild(row);
     }
 }
 var subject = new Subject;
