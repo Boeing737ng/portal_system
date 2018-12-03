@@ -47,7 +47,12 @@ function viewSelectedSection(index) {
     section[index].style.display = 'block';
 }
 
-$('.option-button').on('click', function() {
-    var pageIndex = $('.option-button').index(this);
-    viewSelectedSection(pageIndex);
+$(document).ready(function() {
+    $('.option-button').on('click', function() {
+        var pageIndex = $('.option-button').index(this);
+        viewSelectedSection(pageIndex);
+    });
+    $('.choose-type').click(function() {
+        $('.userInfo').val('');
+    });
 });
