@@ -92,22 +92,29 @@
                     <div id="main-view-nav-content-container">
                         <!-- 교과목 등록 -->
                         <div class="nav-content" id="add-subject">
-                            <button class="vertical-center horizontal-center" id="add-subject-button" onclick="alert('교과목등록');">교과목 등록</button>
+                            <button class="vertical-center horizontal-center" id="add-subject-button">교과목 등록</button>
                         </div>
                         <!-- 교과목 수정 -->
                         <div class="nav-content" id="modifiy-subject">
-                            <button class="vertical-center horizontal-center" id="modifiy-subject" onclick="alert('교과목수정');">교과목 수정</button>
+                            <button class="vertical-center horizontal-center" id="modifiy-subject">교과목 수정</button>
                         </div>
                     </div>
                 </div>
                 <!-- main-view-content -->
                 <div id="view-manage-subject-content">
                     <!-- 교과목 등록 뷰 -->
-                    <div>
-
+                    <div id="register-subject">
+                        과목명 <input type="text" class="subject-info"><br>
+                        과목번호<input id="subject-number" type="text" class="subject-info" disabled><button onclick="subject.createSubjectNo();">과목번호 생성</button><br>
+                        강의시간<input type="text" class="subject-info"><br>
+                        담당교수<input type="text" class="subject-info"><br>
+                        학점<input type="number" class="subject-info"><br>
+                        연도<input type="number" class="subject-info"><br>
+                        학기<input type="number" class="subject-info"><br>
+                        <button onclick="subject.handleCreateSubject();">추가</button>
                     </div>
                     <!-- 교과목 수정 뷰 -->
-                    <div>
+                    <div id="modify-subject">
                         
                     </div>
                 </div>
@@ -180,6 +187,8 @@
     <script src="scripts/user.js"></script>
     <script src="scripts/professor.js"></script>
     <script src="scripts/student.js"></script>
+    <script src="scripts/semester.js"></script>
+    <script src="scripts/subject.js"></script>
 </body>
 
 </html>
