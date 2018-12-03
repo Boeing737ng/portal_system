@@ -29,7 +29,7 @@ class User {
     createProfessorNo() {
         var professorNo;
         firebase.database().ref().child('users/professor').on('value', function(snapshot) {
-            professorNo = 201801000 + snapshot.numChildren();
+            professorNo = 201801 + snapshot.numChildren();
         });
         rdocument.getElementById('professorNo').value = professorNo.toString();
     }
@@ -63,8 +63,9 @@ class User {
                 userEmail, student.getStudentNum()
             ).then(function(success) {
                 firebase.database().ref(
-                    'users/student/' + userEmail
+                    'users/student/' + userInfo[1].value
                 ).set({
+                    email: userEmail,
                     name: student.getName(),
                     type: student.getUserType(),
                     studentNumber: student.getStudentNo(),
@@ -90,8 +91,9 @@ class User {
                 userEmail, professor.getProfessorNo()
             ).then(function(success) {
                 firebase.database().ref(
-                    'users/professor/' + userEmail
+                    'users/professor/' + userInfo[1].value
                 ).set({
+                    email: userEmail,
                     name: professor.getName(),
                     type: professor.getUserType(),
                     professorNumber: professor.getProfessorNo(),
