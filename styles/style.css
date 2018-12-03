@@ -8,6 +8,12 @@ html, body{
 * {
     box-sizing: border-box;
 }
+button {
+    cursor: pointer;
+}
+button:focus {
+    outline: none;
+}
 .vertical-center{
     position: relative;
     top: 50%;
@@ -20,20 +26,18 @@ html, body{
 
 /* nav-container */
 #nav-container{
-    border:1px solid blue;
+    border-bottom: 1px solid black;
     width: 100%;
     height: 50px;
 }
 #nav-content-container{
     float:right;
     height:100%;
-    border:1px solid green;
 }
 .nav-content{
     position:relative;
     width:150px;
     height:100%;
-    border:1px dotted green;
     display:inline-block;
     vertical-align:top;
     text-align:center;
@@ -45,14 +49,13 @@ html, body{
 
 /* content-container */
 #content-container{
-    border:1px solid blue;
     width: 100%;
     height: calc(100% - 50px);
 }
 
 /* sidebar-container */
 #sidebar-container{
-    border:1px solid red;
+    border-right:1px solid black;
     width: 150px;
     height: 100%;
     display: inline-block;
@@ -60,37 +63,40 @@ html, body{
 }
 #admin-container{
     width:100%;
-    border:3px dotted green;
-    margin:20px auto;
+    margin: 0 auto 30px;
 }
 #prof-container{
     width:100%;
-    border:3px dotted green;
-    margin:20px auto;
+    margin: 0 auto 30px;
 }
 #student-container{
     width:100%;
-    border:3px dotted green;
-    margin:20px auto;
 }
 .sidebar-content{
     width:100%;
     height:50px;
-    border:1px dotted green;
+}
+.sidebar-content button {
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    border: none;
+    transition: 300ms;
+}
+.sidebar-content button:hover {
+    background-color: #DDDDDD;
 }
 /* sidebar-container end */
 
 
 /* main-view-container */
 #main-view-container{
-    border:1px solid red;
     width: calc(100% - 150px);
     height: 100%;
     display: inline-block;
     vertical-align: top;
 }
 .main-view-content{
-    border:1px solid black;
     width: 100%;
     height: 100%;
     display:none;
@@ -101,20 +107,24 @@ html, body{
     height: 100%;
 }
 #main-view-nav-container{
-    border:1px solid blue;
     width: 100%;
     height: 50px;
 }
 #main-view-nav-content-container{
     float:right;
     height:100%;
-    border:1px solid green;
 }
 
 #view-manage-subject-content{
     width:100%;
     height:calc(100% - 50px);
-    border:2px solid yellow;
 }
 
+
+/********** 학번/교번 생성 페이지 **********/
+.register-user-container {
+    width: 400px;
+    border: 1px solid #444444;
+    padding: 50px;
+}
 
