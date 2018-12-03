@@ -20,3 +20,21 @@ firebase.auth().onAuthStateChanged(function (user){
         }
     }
 });
+
+function getUserType() {
+    var user = firebase.auth().currentUser;
+    var email = user.email;
+    var id = email.split('@')[0];
+    if(id === 'admin') {
+        return 'admin';
+    }
+    if(id.length == 6) {
+        firebase.database().ref().child('users/professor').on('value', function(snapshot) {
+            console.log(snapshot.val()[id].type);
+        });
+    } else {
+        firebase.database().ref().child('users/student').on('value', function(snapshot) {
+            console.log(snapshot.val()[id].type);
+        }); 
+    }
+}
