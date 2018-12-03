@@ -30,10 +30,16 @@ firebase.auth().onAuthStateChanged(function (user){
 });
 
 function viewSelectedSection(index) {
+    let student = new Student;
     if(currentUserType === 'admin') {
         if(index > 2) {
             alert("권한이 없습니다.");
             return;
+        } else {
+            if(index === 1) {
+                document.getElementById("students-list").innerHTML = '';
+                student.viewStudentsDetail();
+            }
         }
     } else if(currentUserType === 'professor') {
         if(index < 3 || index > 4) {

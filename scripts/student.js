@@ -16,6 +16,48 @@ class Student extends User {
     getStudentState() { return this.studentState }
     getUserType() { return this.type }
 
+    viewStudentsDetail() {
+        student.createTableHeader();
+        firebase.database().ref().child('users/student').on('value', function(snapshot) {
+            snapshot.forEach(function(element) {
+                student.createTableDataTag(element.val());
+            })
+        });
+    }
+
+    createTableHeader() {
+        var obj = new Object();
+        obj.name = '이름';
+        obj.studentNumber  = '학번';
+        obj.department = '소속학과';
+        obj.birthDate = '생년월일'
+        obj.currentState = '학적'
+        this.createTableDataTag(obj)
+    }
+
+    createTableDataTag(data) {
+        var table = document.getElementById('students-list');
+        var row = document.createElement('tr');
+        var nameTag = document.createElement('td');
+        var numberTag = document.createElement('td');
+        var deptTag = document.createElement('td');
+        var birthTag = document.createElement('td');
+        var stateTag = document.createElement('td');
+
+        nameTag.textContent = data.name;
+        numberTag.textContent = data.studentNumber;
+        deptTag.textContent = data.department;
+        birthTag.textContent = data.birthDate;
+        stateTag.textContent = data.currentState;
+
+        row.appendChild(nameTag);
+        row.appendChild(numberTag);
+        row.appendChild(deptTag);
+        row.appendChild(birthTag);
+        row.appendChild(stateTag);
+        table.appendChild(row);
+    }
+
     onRequestMyInfo() {
 
     }
@@ -46,5 +88,5 @@ class Student extends User {
     saveStateChangedHistory(newState) {
         this.stateHistory.push(newState)
     }
-
 }
+var student = new Student;
