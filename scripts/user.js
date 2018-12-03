@@ -74,7 +74,8 @@ class User {
                     birthDate: student.getBirthDate(),
                     currentState: student.getStudentState()
                 });
-                console.log(success)
+                alert("회원정보가 저장되었습니다.");
+                $('.userInfo').val('');
             }).catch(function(error) {
                 var errorMessage = error.message;
                 console.log(errorMessage);
@@ -87,7 +88,7 @@ class User {
                 userInfo[3].value,//소속학과
                 "professor"
             );
-            userEmail = professor.getProfessorNo + '@portal.com';
+            userEmail = professor.getProfessorNo() + '@portal.com';
             firebase.auth().createUserWithEmailAndPassword(
                 userEmail, professor.getProfessorNo()
             ).then(function(success) {
@@ -101,7 +102,8 @@ class User {
                     department: professor.getDepartment(),
                     birthDate: professor.getBirthDate()
                 });
-                console.log(success)
+                alert("회원정보가 저장되었습니다.");
+                $('.userInfo').val('');
             }).catch(function(error) {
                 var errorMessage = error.message;
                 console.log(errorMessage);
