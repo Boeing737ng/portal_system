@@ -271,6 +271,27 @@ button:focus {
 .apply-container {
     text-align: center;
 }
+.plan-header {
+    margin-top: 0;
+    text-align: center;
+}
+.subject-name {
+    cursor: pointer;
+}
+#subjectPlanModal {
+    display: none;
+    position: fixed;
+    padding: 20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: #FFFFFF;
+    border: 2px solid #333333;
+    border-radius: 10px;
+    width: 400px;
+    height: 240px;
+    z-index: 9999;
+}
 
 /********** 강의계획서 관리 **********/
 #modify-subject-plan-section {
