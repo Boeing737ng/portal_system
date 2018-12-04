@@ -1,11 +1,11 @@
 class Student extends User {
-    constructor(name, studentNo, birthDate, department, type, state) {
+    constructor(name, studentNo, birthDate, department, type, state, scholarship) {
         super(name, studentNo, studentNo, type, birthDate)
 
         this.department = department
         this.studentNo = studentNo
         this.studentState = state;
-
+        this.scholarship = scholarship
         this.stateHistory = []
     }
     // Setter
@@ -35,6 +35,7 @@ class Student extends User {
     getBirthDate() { return this.birthDate }
     getStudentState() { return this.studentState }
     getUserType() { return this.type }
+    getScholarship() { return this.scholarship }
 
     handleStateChange() {
         var state = document.getElementById('new-state').value;
@@ -42,6 +43,7 @@ class Student extends User {
     }
 
     viewStudentsDetail() {
+        document.getElementById("students-list").innerHTML = '';
         firebase.database().ref().child('users/student').on('value', function(snapshot) {
             snapshot.forEach(function(element) {
                 student.createTableDataTag(element.val());
@@ -57,6 +59,7 @@ class Student extends User {
         var deptTag = document.createElement('td');
         var birthTag = document.createElement('td');
         var stateTag = document.createElement('td');
+        var scholarshipTag = document.createElement('td');
         var buttonContainer = document.createElement('td');
         var scholarshipButton = document.createElement('button');
 
@@ -65,14 +68,22 @@ class Student extends User {
         deptTag.textContent = data.department;
         birthTag.textContent = data.birthDate;
         stateTag.textContent = data.currentState;
-        scholarshipButton.textContent = '장학등록';
-        scholarshipButton.setAttribute('onclick','changeScholarshipState('+ data.studentNumber +');');
+        scholarshipTag.textContent = data.scholarship;
+        if(data.scholarship === 'yes') {
+            scholarshipButton.textContent = '장학취소';
+            scholarshipButton.style.borderColor = '#F15F5F';
+        } else {
+            scholarshipButton.textContent = '장학등록';
+            scholarshipButton.style.borderColor = '#6B9900';
+        }
+        scholarshipButton.setAttribute('onclick','finance.modifyScholarshipStudent('+ data.studentNumber +');');
 
         row.appendChild(nameTag);
         row.appendChild(numberTag);
         row.appendChild(deptTag);
         row.appendChild(birthTag);
         row.appendChild(stateTag);
+        row.appendChild(scholarshipTag);
         row.appendChild(buttonContainer);
         buttonContainer.appendChild(scholarshipButton);
         studentList.appendChild(row);

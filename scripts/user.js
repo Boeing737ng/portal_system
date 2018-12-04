@@ -58,7 +58,8 @@ class User {
                 userInfo[2].value,//생년월일
                 userInfo[3].value,//소속학과
                 "student",
-                "재학"
+                "재학",
+                "no"
             );
             userEmail = student.getStudentNo() + '@portal.com';
             firebase.auth().createUserWithEmailAndPassword(
@@ -73,7 +74,8 @@ class User {
                     studentNumber: student.getStudentNo(),
                     department: student.getDepartment(),
                     birthDate: student.getBirthDate(),
-                    currentState: student.getStudentState()
+                    currentState: student.getStudentState(),
+                    scholarship: student.getScholarship()
                 });
                 alert("회원정보가 저장되었습니다.");
                 $('.userInfo').val('');

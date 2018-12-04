@@ -43,7 +43,6 @@ function viewSelectedSection(index) {
             return;
         } else {
             if(index === 1) {
-                document.getElementById("students-list").innerHTML = '';
                 student.viewStudentsDetail();
             }
         }
