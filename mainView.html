@@ -204,7 +204,30 @@
             </div>
             <!-- view : 강의계획서 관리 -->
             <div class="main-view-content" id="view-manage-subject-plan">
-
+                <div class="vertical-center horizontal-center"  id="modify-subject-plan-section">
+                    <h3>강의계획서 등록</h3>
+                    <table class="horizontal-center" id="professor-subjects-table">
+                        <thead>
+                            <tr>
+                                <td>과목명</td>
+                                <td>과목번호</td>
+                                <td>강의계획</td>
+                            </tr>
+                        </thead>
+                        <tbody id="professor-subject-list"></tbody>
+                    </table>
+                    <br>
+                    <div class="horizontal-center">
+                        <div class="modify-plan-field">
+                            <div>과목번호와 강의계획서를 입력하세요.</div>
+                            <br>
+                            과목번호<input class="subject-plan-input" type="number" id="professor-subject-no"><br>
+                            강의계획<input class="subject-plan-input" type="text" id="subject-plan"><br>
+                            <br>
+                            <button onclick="subject.handleModifySubjectPlan();">등록</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
