@@ -44,8 +44,26 @@ table td:nth-child(3) {
 table td:nth-child(4) {
     width: 150px;
 }
+table#students-list-table td:nth-child(1) {
+    width: 100px;
+}
+table#students-list-table td:nth-child(2) {
+    width: 130px;
+}
+table#students-list-table td:nth-child(3) {
+    width: 150px;
+}
+table#students-list-table td:nth-child(4) {
+    width: 130px;
+}
+table#students-list-table td:nth-child(5) {
+    width: 110px;
+}
 table td:nth-child(5),table td:nth-child(6),table td:nth-child(7),table td:nth-child(8) {
     width: 70px;
+}
+table#my-info-table td {
+    width: 150px;
 }
 tbody {
     overflow: auto;
@@ -55,11 +73,17 @@ tbody {
 tbody tr:nth-child(even){
     background-color: #f2f2f2;
 }
+table#subjects-list tbody{
+    height: 400px;
+}
 table#apply-subjects-list tbody {
     height: 250px;
 }
 table#saved-subjects-list tbody {
     height: 200px;
+}
+table#students-list-table tbody {
+    height: 500px;
 }
 button {
     cursor: pointer;
