@@ -57,7 +57,8 @@ class User {
                 userInfo[1].value,//학번
                 userInfo[2].value,//생년월일
                 userInfo[3].value,//소속학과
-                "student"
+                "student",
+                "재학"
             );
             userEmail = student.getStudentNo() + '@portal.com';
             firebase.auth().createUserWithEmailAndPassword(
