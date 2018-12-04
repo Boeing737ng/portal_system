@@ -6,14 +6,12 @@ firebase.auth().onAuthStateChanged(function (user){
         var id = userEmail.split('@')[0];
         if(id === "admin") {
             currentUserType = 'admin';
-            console.log(currentUserType);
             document.getElementById('id-span').textContent = 'admin';
             document.getElementById('user-type-span').textContent = '학사 담당자';
         } else {
             if(id.length == 6) {
                 firebase.database().ref().child('users/professor').on('value', function(snapshot) {
                     currentUserType = snapshot.val()[id].type;
-                    console.log(currentUserType);
                     document.getElementById('id-span').textContent = snapshot.val()[id].professorNumber;
                     document.getElementById('user-type-span').textContent = snapshot.val()[id].name;
                 });
@@ -21,7 +19,6 @@ firebase.auth().onAuthStateChanged(function (user){
                 let student = new Student;
                 firebase.database().ref().child('users/student').on('value', function(snapshot) {
                     currentUserType = snapshot.val()[id].type;
-                    console.log(currentUserType);
                     document.getElementById('id-span').textContent = snapshot.val()[id].studentNumber;
                     document.getElementById('user-type-span').textContent = snapshot.val()[id].name;
 
