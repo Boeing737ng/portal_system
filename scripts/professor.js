@@ -6,6 +6,14 @@ class Professor extends User {
         this.department = department
         this.subject = []
     }
+    // Setter
+    setName(name) {
+        this.name = name;
+    }
+    setProfessorNo(num) {
+        this.professorNo = num;
+    }
+
     // Getter
     getName() { return this.name }
     getProfessorNo() { return this.professorNo }

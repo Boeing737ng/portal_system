@@ -1,5 +1,6 @@
 let currentUserType;
 let student = new Student;
+let professor = new Professor;
 let subject = new Subject;
 let subjectTaken = new SubjectTaken;
 
@@ -17,6 +18,9 @@ firebase.auth().onAuthStateChanged(function (user){
                     currentUserType = snapshot.val()[id].type;
                     document.getElementById('id-span').textContent = snapshot.val()[id].professorNumber;
                     document.getElementById('user-type-span').textContent = snapshot.val()[id].name;
+
+                    professor.setName(snapshot.val()[id].name);
+                    professor.setProfessorNo(snapshot.val()[id].professorNumber);
                 });
             } else {
                 //student = new Student;
@@ -52,6 +56,8 @@ function viewSelectedSection(index) {
         if(index < 3 || index > 4) {
             alert("권한이 없습니다.");
             return;
+        } else if(index === 4) {
+            subject.viewStudentSubject();
         }
     } else {
         if(index < 5) {

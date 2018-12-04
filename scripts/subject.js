@@ -22,6 +22,12 @@ class Subject extends Semester {
         this.registerSubject(subjectInfo);
     }
 
+    handleModifySubjectPlan() {
+        var subjectNo = document.getElementById('professor-subject-no').value;
+        var subjectPlan = document.getElementById('subject-plan').value;
+        this.modifySubjectPlan(subjectNo, subjectPlan);
+    }
+
     createSubjectNo() {
         var subjectNo;
         firebase.database().ref().child('subjects').on('value', function(snapshot) {
@@ -198,6 +204,45 @@ class Subject extends Semester {
         row.appendChild(semesterTag);
         row.appendChild(applyButtonContainer);
         applyButtonContainer.appendChild(applyButton);
+        subjectList.appendChild(row);
+    }
+
+    modifySubjectPlan(subjectNo, text) {
+        firebase.database().ref('/subjects/' + subjectNo).update({
+            subjectPlan: text
+        });
+        firebase.database().ref('users/professor/' + professor.getProfessorNo() + '/subject/' + subjectNo).update({
+            subjectPlan: text
+        }).then(function(success) {
+            alert('강의계획 내용이 저장되었습니다.');
+            $('.subject-plan-input').val('');
+        });
+    }
+
+    viewStudentSubject() {
+        document.getElementById("professor-subject-list").innerHTML = '';
+        firebase.database().ref().child('users/professor/' + professor.getProfessorNo() + '/subject/').on('value', function(snapshot) {
+            document.getElementById("professor-subject-list").innerHTML = '';
+            snapshot.forEach(function(element) {
+                subject.createProfessorSubjectTable(element.val());
+            })
+        });
+    }
+
+    createProfessorSubjectTable(data) {
+        var subjectList = document.getElementById('professor-subject-list');
+        var row = document.createElement('tr');
+        var nameTag = document.createElement('td');
+        var numberTag = document.createElement('td');
+        var planTag = document.createElement('td');
+
+        nameTag.textContent = data.name;
+        numberTag.textContent = data.subjectNo;
+        planTag.textContent = data.subjectPlan;
+
+        row.appendChild(nameTag);
+        row.appendChild(numberTag);
+        row.appendChild(planTag);
         subjectList.appendChild(row);
     }
 }

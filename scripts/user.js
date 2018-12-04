@@ -92,12 +92,25 @@ class User {
                 "professor"
             );
             userEmail = professor.getProfessorNo() + '@portal.com';
+
             firebase.auth().createUserWithEmailAndPassword(
                 userEmail, professor.getProfessorNo()
             ).then(function(success) {
+                firebase.database().ref().child('subjects').on('value', function(snapshot) {
+                    snapshot.forEach(function(element) {
+                        if(element.val().professor === professor.getName()) {
+                            firebase.database().ref(
+                                'users/professor/' + professor.getProfessorNo() + '/subject/' + element.val().number
+                                ).set({
+                                    subjectNo: element.val().number,
+                                    name: element.val().name
+                            });
+                        }
+                    })
+                });
                 firebase.database().ref(
-                    'users/professor/' + userInfo[1].value
-                ).set({
+                    'users/professor/' + professor.getProfessorNo()
+                ).update({
                     email: userEmail,
                     name: professor.getName(),
                     type: professor.getUserType(),
