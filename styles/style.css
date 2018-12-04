@@ -141,6 +141,7 @@ button:focus {
 /********** 과목관리 페이지 **********/
 .subject-management {
     height: 100%;
+    overflow: auto;
 }
 .switch-box {
     display: none;

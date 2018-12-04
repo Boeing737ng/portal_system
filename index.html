@@ -15,14 +15,24 @@
                 <input id="id" type="text"><br>
                 Password<br>
                 <input id="pwd" type="password"><br>
-                <button onclick="user.handleLoginData();">로그인</button>
+                <button id="login-button" onclick="user.handleLoginData();">로그인</button>
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
     <script src="scripts/firebase.js"></script>
     <script src="scripts/user.js"></script>
     <script src="scripts/professor.js"></script>
     <script src="scripts/student.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#id, #pwd').keypress(function(event){
+                if(event.keyCode === 13){
+                    $('#login-button').click();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
