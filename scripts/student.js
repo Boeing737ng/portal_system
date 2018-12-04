@@ -42,7 +42,6 @@ class Student extends User {
     }
 
     viewStudentsDetail() {
-        student.createTableHeader();
         firebase.database().ref().child('users/student').on('value', function(snapshot) {
             snapshot.forEach(function(element) {
                 student.createTableDataTag(element.val());
@@ -50,18 +49,8 @@ class Student extends User {
         });
     }
 
-    createTableHeader() {
-        var obj = new Object();
-        obj.name = '이름';
-        obj.studentNumber  = '학번';
-        obj.department = '소속학과';
-        obj.birthDate = '생년월일'
-        obj.currentState = '학적'
-        this.createTableDataTag(obj)
-    }
-
     createTableDataTag(data) {
-        var table = document.getElementById('students-list');
+        var studentList = document.getElementById('students-list');
         var row = document.createElement('tr');
         var nameTag = document.createElement('td');
         var numberTag = document.createElement('td');
@@ -80,7 +69,7 @@ class Student extends User {
         row.appendChild(deptTag);
         row.appendChild(birthTag);
         row.appendChild(stateTag);
-        table.appendChild(row);
+        studentList.appendChild(row);
     }
 
     viewMyInfo() {
@@ -96,7 +85,7 @@ class Student extends User {
         firebase.database().ref().child('subjects').on('value', function(snapshot) {
             snapshot.forEach(function(element) {
                 if(element.val().semester === '1') {
-                    student.createTableDataTag(element.val(),'all');
+                    student.createTableForRegiserSubject(element.val(),'all');
                 }
             })
         });
@@ -106,12 +95,12 @@ class Student extends User {
         document.getElementById("s-subjects-list").innerHTML = '';
         firebase.database().ref().child('users/student/'+id+'/subjects/').on('value', function(snapshot) {
             snapshot.forEach(function(element) {
-                student.createTableDataTag(element.val(), 'sel');
+                student.createTableForRegiserSubject(element.val(), 'sel');
             })
         });
     }
 
-    createTableDataTag(data, option) {
+    createTableForRegiserSubject(data, option) {
         var subjectList;
         var row = document.createElement('tr');
         var nameTag = document.createElement('td');

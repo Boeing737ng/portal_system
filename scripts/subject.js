@@ -86,8 +86,7 @@ class Subject extends Semester {
     }
 
     viewSubjectsDetail() {
-        document.getElementById("subjects-list").innerHTML = '';
-        subject.createTableHeader();
+        document.getElementById("manage-subject-list").innerHTML = '';
         firebase.database().ref().child('subjects').on('value', function(snapshot) {
             snapshot.forEach(function(element) {
                 subject.createTableDataTag(element.val());
@@ -95,20 +94,8 @@ class Subject extends Semester {
         });
     }
 
-    createTableHeader() {
-        var obj = new Object();
-        obj.name = '과목명';
-        obj.number  = '과목번호';
-        obj.time = '강의시간';
-        obj.professor = '담당교수'
-        obj.grade = '학점'
-        obj.year = '연도'
-        obj.semester = '학기'
-        this.createTableDataTag(obj)
-    }
-
     createTableDataTag(data) {
-        var table = document.getElementById('subjects-list');
+        var subjectList = document.getElementById('manage-subject-list');
         var row = document.createElement('tr');
         var nameTag = document.createElement('td');
         var numberTag = document.createElement('td');
@@ -133,7 +120,7 @@ class Subject extends Semester {
         row.appendChild(gradeTag);
         row.appendChild(yearTag);
         row.appendChild(semesterTag);
-        table.appendChild(row);
+        subjectList.appendChild(row);
     }
 }
 var subject = new Subject;
