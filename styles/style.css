@@ -75,6 +75,15 @@ table td:nth-child(5),table td:nth-child(6),table td:nth-child(7),table td:nth-c
 table#my-info-table td {
     width: 150px;
 }
+table#professor-subjects-table td:nth-child(1) {
+    width: 200px;
+}
+table#professor-subjects-table td:nth-child(2) {
+    width: 80px;
+}
+table#professor-subjects-table td:nth-child(3) {
+    width: 400px;
+}
 tbody {
     overflow: auto;
     display: block;
@@ -260,5 +269,10 @@ button:focus {
 
 /********** 수강신청 **********/
 .apply-container {
+    text-align: center;
+}
+
+/********** 강의계획서 관리 **********/
+#modify-subject-plan-section {
     text-align: center;
 }
