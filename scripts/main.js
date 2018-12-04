@@ -1,5 +1,5 @@
 let currentUserType;
-let student;
+let student = new Student;
 
 firebase.auth().onAuthStateChanged(function (user){
     if (user) {
@@ -17,7 +17,7 @@ firebase.auth().onAuthStateChanged(function (user){
                     document.getElementById('user-type-span').textContent = snapshot.val()[id].name;
                 });
             } else {
-                student = new Student;
+                //student = new Student;
                 firebase.database().ref().child('users/student').on('value', function(snapshot) {
                     currentUserType = snapshot.val()[id].type;
                     document.getElementById('id-span').textContent = snapshot.val()[id].studentNumber;
@@ -81,7 +81,7 @@ $(document).ready(function() {
         $('#modify-subject-section').css('display','none');
     });
     $('#modifiy-subject-button').on('click', function() {
-        document.getElementById("subjects-list").innerHTML = '';
+        document.getElementById("manage-subject-list").innerHTML = '';
         $('#register-subject-section').css('display','none');
         $('#modify-subject-section').css('display','block');
         subject.viewSubjectsDetail();
