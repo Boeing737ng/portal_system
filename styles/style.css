@@ -23,6 +23,11 @@ table thead tr:first-child {
     background-color: #EEEEEE;
     margin-bottom: 5px;
 }
+table thead td{
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
 table td {
     border: 1px solid #ddd;
     padding: 10px;
