@@ -86,4 +86,12 @@ $(document).ready(function() {
         $('#modify-subject-section').css('display','block');
         subject.viewSubjectsDetail();
     });
+    $('#enable-state-input').on('click', function() {
+        var display = $('#state-input-container').css('display');
+        if(display === 'none') {
+            $('#state-input-container').css('display','block');
+        } else {
+            $('#state-input-container').css('display','none');
+        }
+    });
 });

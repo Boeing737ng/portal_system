@@ -184,7 +184,43 @@
 
             <!-- view : 신상정보 조회 -->
             <div class="main-view-content" id="view-manage-user">
-
+                <div class="vertical-center horizontal-center info-table-container">
+                    <h3>개인정보</h3>
+                    <table>
+                        <tr>
+                            <td>이름</td>
+                            <td id="s-name"></td>
+                        </tr>
+                        <tr>
+                            <td>생년월일</td>
+                            <td id="s-birth"></td>
+                        </tr>
+                        <tr>
+                            <td>학번</td>
+                            <td id="s-num"></td>
+                        </tr>
+                        <tr>
+                            <td>소속학과</td>
+                            <td id="s-dept"></td>
+                        </tr>
+                        <tr>
+                            <td>학적상태</td>
+                            <td id="s-state"></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <div class="state-wrapper">
+                        <button id="enable-state-input">학적 변경하기</button>
+                        <hr>
+                        <div id="state-input-container">
+                            <select id="new-state">
+                                <option value="재학">재학</option>
+                                <option value="휴학">휴학</option>
+                            </select>
+                            <button onclick="student.handleStateChange();">변경신청</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- view : 강의시간표 조회 -->
             <div class="main-view-content" id="view-manage-timetable">

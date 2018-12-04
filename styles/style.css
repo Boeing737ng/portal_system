@@ -159,3 +159,23 @@ button:focus {
 .modify-input-field:first-child {
     border-right: 1px solid black;
 }
+
+/********** 개인 신상정보 조회 **********/
+.info-table-container {
+    width: fit-content;
+    text-align: center;
+}
+.state-wrapper {
+    border-radius: 5px;
+    height: 80px;
+    padding: 10px;
+}
+#enable-state-input {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #3333;
+    border-radius: 5px;
+}
+#state-input-container {
+    display: none;
+}

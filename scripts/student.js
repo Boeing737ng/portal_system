@@ -36,6 +36,11 @@ class Student extends User {
     getStudentState() { return this.studentState }
     getUserType() { return this.type }
 
+    handleStateChange() {
+        var state = document.getElementById('new-state').value;
+        this.changeStudentState(state);
+    }
+
     viewStudentsDetail() {
         student.createTableHeader();
         firebase.database().ref().child('users/student').on('value', function(snapshot) {
@@ -104,6 +109,14 @@ class Student extends User {
 
     // Change student's current state
     changeStudentState(newState) {
+        var id = getSignInEmail().split('@')[0];
+        var modifiedState = {
+            currentState: newState 
+        }
+        firebase.database().ref('/users/student/' + id + '/').update(modifiedState)
+        .then(function(success) {
+            alert('학적 정보가 변경되었습니다.');
+        });
         this.studentState = newState
         this.saveStateChangedHistory(newState)
     }
