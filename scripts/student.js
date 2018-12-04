@@ -92,17 +92,27 @@ class Student extends User {
     }
 
     displayAvailableSubejectsList() {
+        document.getElementById("a-subjects-list").innerHTML = '';
         firebase.database().ref().child('subjects').on('value', function(snapshot) {
             snapshot.forEach(function(element) {
                 if(element.val().semester === '1') {
-                    student.createTableDataTag(element.val());
+                    student.createTableDataTag(element.val(),'all');
                 }
             })
         });
     }
 
-    createTableDataTag(data) {
-        var subjectList = document.getElementById('a-subjects-list');
+    displayAppliedSubjectsList(id) {
+        document.getElementById("s-subjects-list").innerHTML = '';
+        firebase.database().ref().child('users/student/'+id+'/subjects/').on('value', function(snapshot) {
+            snapshot.forEach(function(element) {
+                student.createTableDataTag(element.val(), 'sel');
+            })
+        });
+    }
+
+    createTableDataTag(data, option) {
+        var subjectList;
         var row = document.createElement('tr');
         var nameTag = document.createElement('td');
         var numberTag = document.createElement('td');
@@ -114,6 +124,16 @@ class Student extends User {
         var applyButtonContainer = document.createElement('td');
         var applyButton = document.createElement('button');
 
+        if(option === 'all') {
+            subjectList = document.getElementById('a-subjects-list');
+            applyButton.textContent = '저장';
+            applyButton.setAttribute("onclick","student.applySubject("+ data.number +");");
+        } else {
+            subjectList = document.getElementById('s-subjects-list');
+            applyButton.textContent = '삭제';
+            applyButton.setAttribute("onclick","student.removeAppliedSubject("+ data.number +");");
+        }
+
         nameTag.textContent = data.name;
         numberTag.textContent = data.number;
         timeTag.textContent = data.time;
@@ -121,8 +141,6 @@ class Student extends User {
         gradeTag.textContent = data.grade;
         yearTag.textContent = data.year;
         semesterTag.textContent = data.semester;
-        applyButton.textContent = '저장';
-        applyButtonContainer.appendChild(applyButton);
 
         row.appendChild(nameTag);
         row.appendChild(numberTag);
@@ -132,6 +150,7 @@ class Student extends User {
         row.appendChild(yearTag);
         row.appendChild(semesterTag);
         row.appendChild(applyButtonContainer);
+        applyButtonContainer.appendChild(applyButton);
         subjectList.appendChild(row);
     }
 
@@ -139,8 +158,34 @@ class Student extends User {
 
     }
 
-    lectureApplication() {
+    applySubject(subjectNo) {
+        var userEmail = getSignInEmail();
+        var id = userEmail.split('@')[0];
 
+        firebase.database().ref().child('subjects/' + subjectNo).once('value')
+        .then(function(snapshot) {
+            firebase.database().ref(
+                'users/student/' + id + '/subjects/' + subjectNo
+            ).set({
+                name: snapshot.val().name,
+                number: snapshot.val().number,
+                time: snapshot.val().time,
+                professor: snapshot.val().professor,
+                grade: snapshot.val().grade,
+                year: snapshot.val().year,
+                semester: snapshot.val().semester,
+            });
+            student.displayAppliedSubjectsList(id);
+        });
+        
+    }
+
+    removeAppliedSubject(subjectNo) {
+        var id = student.getStudentNo();
+        firebase.database().ref('users/student/' + id + '/subjects/').child(subjectNo).remove()
+            .then(function(success) {
+                student.displayAppliedSubjectsList(id);
+            });
     }
 
     onRequestSubjectGrade() {
@@ -170,4 +215,4 @@ class Student extends User {
         this.stateHistory.push(newState)
     }
 }
-var student = new Student;
+//var student = new Student;

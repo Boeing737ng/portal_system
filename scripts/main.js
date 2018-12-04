@@ -1,4 +1,5 @@
 let currentUserType;
+let student;
 
 firebase.auth().onAuthStateChanged(function (user){
     if (user) {
@@ -16,7 +17,7 @@ firebase.auth().onAuthStateChanged(function (user){
                     document.getElementById('user-type-span').textContent = snapshot.val()[id].name;
                 });
             } else {
-                let student = new Student;
+                student = new Student;
                 firebase.database().ref().child('users/student').on('value', function(snapshot) {
                     currentUserType = snapshot.val()[id].type;
                     document.getElementById('id-span').textContent = snapshot.val()[id].studentNumber;
@@ -36,7 +37,6 @@ firebase.auth().onAuthStateChanged(function (user){
 });
 
 function viewSelectedSection(index) {
-    let student = new Student;
     if(currentUserType === 'admin') {
         if(index > 2) {
             alert("권한이 없습니다.");
@@ -58,6 +58,7 @@ function viewSelectedSection(index) {
             return;
         } else if(index === 7) {
             student.displayAvailableSubejectsList();
+            student.displayAppliedSubjectsList(student.getStudentNo());
         }
     }
     var section = document.getElementsByClassName('main-view-content');
