@@ -1,13 +1,33 @@
 class Student extends User {
-    constructor(name, studentNo, birthDate, department, type) {
+    constructor(name, studentNo, birthDate, department, type, state) {
         super(name, studentNo, studentNo, type, birthDate)
 
         this.department = department
         this.studentNo = studentNo
-        this.studentState = "attending";
+        this.studentState = state;
 
         this.stateHistory = []
     }
+    // Setter
+    setName(name) {
+        this.name = name;
+    }
+    setStudentNo(num) {
+        this.studentNo = num;
+    }
+    setDepartment(dept) {
+        this.department = dept;
+    }
+    setBirthDate(date) {
+        this.birthDate = date;
+    }
+    setState(state) {
+        this.studentState = state;
+    }
+    setUserType(type) {
+        this.type = type;
+    }
+
     // Getter
     getName() { return this.name }
     getStudentNo() { return this.studentNo }
@@ -58,8 +78,12 @@ class Student extends User {
         table.appendChild(row);
     }
 
-    onRequestMyInfo() {
-
+    viewMyInfo() {
+        document.getElementById('s-name').textContent = this.getName();
+        document.getElementById('s-birth').textContent = this.getBirthDate();
+        document.getElementById('s-num').textContent = this.getStudentNo();
+        document.getElementById('s-dept').textContent = this.getDepartment();
+        document.getElementById('s-state').textContent = this.getStudentState();
     }
 
     onRequestLectureTimeTable() {
