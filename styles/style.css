@@ -8,14 +8,53 @@ html, body{
 * {
     box-sizing: border-box;
 }
+h3 {
+    margin-top: 0;
+}
 table {
     text-align: center;
     border-collapse: collapse;
     width: fit-content;
 }
+table tr {
+    display: block;
+}
+table thead tr:first-child {
+    background-color: #EEEEEE;
+    margin-bottom: 5px;
+}
 table td {
-    border: 1px solid black;
+    border: 1px solid #ddd;
     padding: 10px;
+}
+table td:nth-child(1) {
+    width: 200px;
+}
+table td:nth-child(2) {
+    width: 100px;
+}
+table td:nth-child(3) {
+    width: 180px;
+}
+table td:nth-child(4) {
+    width: 150px;
+}
+table td:nth-child(5),table td:nth-child(6),table td:nth-child(7),table td:nth-child(8) {
+    width: 70px;
+}
+tbody {
+    overflow: auto;
+    display: block;
+    border: 1px solid #ddd;
+}
+tbody tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+table#apply-subjects-list tbody {
+    height: 250px;
+}
+table#saved-subjects-list tbody {
+    height: 200px;
 }
 button {
     cursor: pointer;
@@ -178,4 +217,9 @@ button:focus {
 }
 #state-input-container {
     display: none;
+}
+
+/********** 수강신청 **********/
+.apply-container {
+    text-align: center;
 }
