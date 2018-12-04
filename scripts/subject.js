@@ -188,6 +188,9 @@ class Subject extends Semester {
         }
 
         nameTag.textContent = data.name;
+        nameTag.setAttribute('onmouseover','subject.openSubjectPlanModal(' + data.number + ');');
+        nameTag.setAttribute('onmouseleave','subject.hidePlanModal();');
+        nameTag.className = 'subject-name';
         numberTag.textContent = data.number;
         timeTag.textContent = data.time;
         professorTag.textContent = data.professor;
@@ -244,5 +247,16 @@ class Subject extends Semester {
         row.appendChild(numberTag);
         row.appendChild(planTag);
         subjectList.appendChild(row);
+    }
+
+    openSubjectPlanModal(subjectNo) {
+        document.getElementById('subjectPlanModal').style.display = 'block';
+        firebase.database().ref().child('subjects/' + subjectNo).on('value', function(snapshot) {
+            document.getElementById('planText').textContent = snapshot.val().subjectPlan;
+        });
+    }
+
+    hidePlanModal() {
+        document.getElementById('subjectPlanModal').style.display = 'none';
     }
 }
