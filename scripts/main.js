@@ -59,6 +59,8 @@ function viewSelectedSection(index) {
         if(index < 5) {
             alert("권한이 없습니다.");
             return;
+        } else if(index === 7) {
+            student.displayAvailableSubejectsList();
         }
     }
     var section = document.getElementsByClassName('main-view-content');

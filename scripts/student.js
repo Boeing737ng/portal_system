@@ -91,11 +91,55 @@ class Student extends User {
         document.getElementById('s-state').textContent = this.getStudentState();
     }
 
+    displayAvailableSubejectsList() {
+        firebase.database().ref().child('subjects').on('value', function(snapshot) {
+            snapshot.forEach(function(element) {
+                if(element.val().semester === '1') {
+                    student.createTableDataTag(element.val());
+                }
+            })
+        });
+    }
+
+    createTableDataTag(data) {
+        var subjectList = document.getElementById('a-subjects-list');
+        var row = document.createElement('tr');
+        var nameTag = document.createElement('td');
+        var numberTag = document.createElement('td');
+        var timeTag = document.createElement('td');
+        var professorTag = document.createElement('td');
+        var gradeTag = document.createElement('td');
+        var yearTag = document.createElement('td');
+        var semesterTag = document.createElement('td');
+        var applyButtonContainer = document.createElement('td');
+        var applyButton = document.createElement('button');
+
+        nameTag.textContent = data.name;
+        numberTag.textContent = data.number;
+        timeTag.textContent = data.time;
+        professorTag.textContent = data.professor;
+        gradeTag.textContent = data.grade;
+        yearTag.textContent = data.year;
+        semesterTag.textContent = data.semester;
+        applyButton.textContent = '저장';
+        applyButtonContainer.appendChild(applyButton);
+
+        row.appendChild(nameTag);
+        row.appendChild(numberTag);
+        row.appendChild(timeTag);
+        row.appendChild(professorTag);
+        row.appendChild(gradeTag);
+        row.appendChild(yearTag);
+        row.appendChild(semesterTag);
+        row.appendChild(applyButtonContainer);
+        subjectList.appendChild(row);
+    }
+
     onRequestLectureTimeTable() {
 
     }
 
-    onRequestLectureApplication() {
+    lectureApplication() {
 
     }
 
