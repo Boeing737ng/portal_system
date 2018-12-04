@@ -118,7 +118,20 @@
                         </div>
                         <div class="vertical-center horizontal-center switch-box"  id="modify-subject-section">
                             <h3>교과목 수정 및 삭제</h3>
-                            <table class="horizontal-center" id="subjects-list"></table>
+                            <table class="horizontal-center" id="subjects-list">
+                                <thead>
+                                    <tr>
+                                        <td>과목명</td>
+                                        <td>과목번호</td>
+                                        <td>강의시간</td>
+                                        <td>담당교수</td>
+                                        <td>학점</td>
+                                        <td>연도</td>
+                                        <td>학기</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="manage-subject-list"></tbody>
+                            </table>
                             <br>
                             <div class="horizontal-center">
                                 <div class="modify-input-field">
@@ -148,7 +161,18 @@
             </div>
             <!-- view : 학생 신상 정보 조회-->
             <div class="main-view-content" id="view-manage-student-info">
-                <table class="vertical-center horizontal-center" id="students-list"></table>
+                <table class="vertical-center horizontal-center" id="students-list-table">
+                    <thead>
+                        <tr>
+                            <td>이름</td>
+                            <td>학번</td>
+                            <td>소속학과</td>
+                            <td>생년월일</td>
+                            <td>학적</td>
+                        </tr>
+                    </thead>
+                    <tbody id="students-list"></tbody>
+                </table>
             </div>
             <!-- view : 학번/교번부여 -->
             <div class="main-view-content" id="view-allocate-new-user">
@@ -186,7 +210,7 @@
             <div class="main-view-content" id="view-manage-user">
                 <div class="vertical-center horizontal-center info-table-container">
                     <h3>개인정보</h3>
-                    <table>
+                    <table id="my-info-table">
                         <tr>
                             <td>이름</td>
                             <td id="s-name"></td>
@@ -277,12 +301,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
     <script src="scripts/firebase.js"></script>
-    <script src="scripts/main.js"></script>
     <script src="scripts/user.js"></script>
     <script src="scripts/professor.js"></script>
     <script src="scripts/student.js"></script>
     <script src="scripts/semester.js"></script>
     <script src="scripts/subject.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 
 </html>
