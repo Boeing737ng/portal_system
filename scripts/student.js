@@ -57,18 +57,24 @@ class Student extends User {
         var deptTag = document.createElement('td');
         var birthTag = document.createElement('td');
         var stateTag = document.createElement('td');
+        var buttonContainer = document.createElement('td');
+        var scholarshipButton = document.createElement('button');
 
         nameTag.textContent = data.name;
         numberTag.textContent = data.studentNumber;
         deptTag.textContent = data.department;
         birthTag.textContent = data.birthDate;
         stateTag.textContent = data.currentState;
+        scholarshipButton.textContent = '장학등록';
+        scholarshipButton.setAttribute('onclick','changeScholarshipState('+ data.studentNumber +');');
 
         row.appendChild(nameTag);
         row.appendChild(numberTag);
         row.appendChild(deptTag);
         row.appendChild(birthTag);
         row.appendChild(stateTag);
+        row.appendChild(buttonContainer);
+        buttonContainer.appendChild(scholarshipButton);
         studentList.appendChild(row);
     }
 
