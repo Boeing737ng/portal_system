@@ -56,6 +56,8 @@ function viewSelectedSection(index) {
         if(index < 5) {
             alert("권한이 없습니다.");
             return;
+        } else if(index === 6) {
+            subject.viewStudentSubject(student.getStudentNo());
         } else if(index === 7) {
             student.displayAvailableSubejectsList();
             student.displayAppliedSubjectsList(student.getStudentNo());

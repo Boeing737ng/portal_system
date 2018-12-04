@@ -89,13 +89,27 @@ class Subject extends Semester {
         document.getElementById("manage-subject-list").innerHTML = '';
         firebase.database().ref().child('subjects').on('value', function(snapshot) {
             snapshot.forEach(function(element) {
-                subject.createTableDataTag(element.val());
+                subject.createTableDataTag(element.val(), 'selectAll');
             })
         });
     }
 
-    createTableDataTag(data) {
-        var subjectList = document.getElementById('manage-subject-list');
+    viewStudentSubject(id) {
+        document.getElementById("student-subject-list").innerHTML = '';
+        firebase.database().ref().child('users/student/' + id + '/subjects/').on('value', function(snapshot) {
+            snapshot.forEach(function(element) {
+                subject.createTableDataTag(element.val(), 'isTaken');
+            })
+        });
+    }
+
+    createTableDataTag(data, option) {
+        var subjectList; 
+        if(option === 'selectAll') {
+            subjectList = document.getElementById('manage-subject-list');
+        } else {
+            subjectList = document.getElementById('student-subject-list');
+        }
         var row = document.createElement('tr');
         var nameTag = document.createElement('td');
         var numberTag = document.createElement('td');
