@@ -18,11 +18,20 @@ firebase.auth().onAuthStateChanged(function (user){
                     document.getElementById('user-type-span').textContent = snapshot.val()[id].name;
                 });
             } else {
+                let student = new Student;
                 firebase.database().ref().child('users/student').on('value', function(snapshot) {
                     currentUserType = snapshot.val()[id].type;
                     console.log(currentUserType);
                     document.getElementById('id-span').textContent = snapshot.val()[id].studentNumber;
                     document.getElementById('user-type-span').textContent = snapshot.val()[id].name;
+
+                    student.setName(snapshot.val()[id].name);
+                    student.setStudentNo(snapshot.val()[id].studentNumber);
+                    student.setBirthDate(snapshot.val()[id].birthDate);
+                    student.setDepartment(snapshot.val()[id].department);
+                    student.setUserType(snapshot.val()[id].type);
+                    student.setState(snapshot.val()[id].currentState);
+                    student.viewMyInfo();
                 }); 
             }
         }
