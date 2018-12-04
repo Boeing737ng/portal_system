@@ -1,5 +1,7 @@
 let currentUserType;
 let student = new Student;
+let subject = new Subject;
+let subjectTaken = new SubjectTaken;
 
 firebase.auth().onAuthStateChanged(function (user){
     if (user) {
@@ -58,8 +60,8 @@ function viewSelectedSection(index) {
         } else if(index === 6) {
             subject.viewStudentSubject(student.getStudentNo());
         } else if(index === 7) {
-            student.displayAvailableSubejectsList();
-            student.displayAppliedSubjectsList(student.getStudentNo());
+            subject.displayAvailableSubejectsList();
+            subject.displayAppliedSubjectsList(student.getStudentNo());
         }
     }
     var section = document.getElementsByClassName('main-view-content');
