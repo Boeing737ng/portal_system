@@ -70,6 +70,12 @@ class SubjectTaken {
             .update({
                 grade: grade
             });
+            console.log(id);
+            firebase.database()
+            .ref('users/student/' + id + '/subjects/' + subject.getSubjectNum())
+            .update({
+                grade: grade
+            });
         }
         alert('성적이 저장되었습니다.');
         subjectTaken.viewStudentListForGrade();
