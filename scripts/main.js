@@ -70,6 +70,8 @@ function viewSelectedSection(index) {
         } else if(index === 7) {
             subject.displayAvailableSubejectsList();
             subject.displayAppliedSubjectsList(student.getStudentNo());
+        } else if(index === 8) {
+            subjectTaken.displayStudentGrade(student.getStudentNo());
         }
     }
     var section = document.getElementsByClassName('main-view-content');

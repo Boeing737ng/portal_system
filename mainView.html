@@ -290,20 +290,23 @@
             </div>
             <!-- view : 강의시간표 조회 -->
             <div class="main-view-content" id="view-manage-timetable">
-                <table class="vertical-center horizontal-center" id="student-subject-list-table">
-                    <thead>
-                        <tr>
-                            <td>과목명</td>
-                            <td>과목번호</td>
-                            <td>강의시간</td>
-                            <td>담당교수</td>
-                            <td>학점</td>
-                            <td>연도</td>
-                            <td>학기</td>
-                        </tr>
-                    </thead>
-                    <tbody id="student-subject-list"></tbody>
-                </table>
+                <div class="vertical-center horizontal-center" style="text-align:center;">
+                    <h3>강의 시간표</h3>
+                    <table class="horizontal-center" id="student-subject-list-table">
+                        <thead>
+                            <tr>
+                                <td>과목명</td>
+                                <td>과목번호</td>
+                                <td>강의시간</td>
+                                <td>담당교수</td>
+                                <td>학점</td>
+                                <td>연도</td>
+                                <td>학기</td>
+                            </tr>
+                        </thead>
+                        <tbody id="student-subject-list"></tbody>
+                    </table>
+                </div>
             </div>
             <!-- view : 수강신청 -->
             <div class="main-view-content" id="view-apply-subject">
@@ -351,7 +354,23 @@
             </div>
             <!-- view : 성적조회 -->
             <div class="main-view-content" id="view-manage-subject-grade">
-
+                <div class="vertical-center horizontal-center" style="text-align:center;">
+                    <h3>성적조회</h3>
+                    <table class="horizontal-center" id="subject-grade-table">
+                        <thead>
+                            <tr>
+                                <td>과목명</td>
+                                <td>과목번호</td>
+                                <td>담당교수</td>
+                                <td>학점</td>
+                                <td>연도</td>
+                                <td>학기</td>
+                                <td>성적</td>
+                            </tr>
+                        </thead>
+                        <tbody id="subject-grade-list"></tbody>
+                    </table>
+                </div>
             </div>
             <!-- view : 등록금 조회 -->
             <div class="main-view-content" id="view-manage-tuition-fee">

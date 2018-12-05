@@ -162,7 +162,41 @@ class SubjectTaken {
         studentList.appendChild(row);
     }
 
-    displayLectureTimeTable() {
-        
+    displayStudentGrade(id) {
+        document.getElementById("subject-grade-list").innerHTML = '';
+        firebase.database().ref().child('users/student/' + id + '/subjects/').on('value', function(snapshot) {
+            snapshot.forEach(function(element) {
+                subjectTaken.createTableDataTag(element.val());
+            })
+        });
+    }
+
+    createTableDataTag(data) {
+        var subjectList = document.getElementById("subject-grade-list");
+        var row = document.createElement('tr');
+        var nameTag = document.createElement('td');
+        var numberTag = document.createElement('td');
+        var professorTag = document.createElement('td');
+        var creditTag = document.createElement('td');
+        var yearTag = document.createElement('td');
+        var semesterTag = document.createElement('td');
+        var gradeTag = document.createElement('td');
+
+        nameTag.textContent = data.name;
+        numberTag.textContent = data.number;
+        professorTag.textContent = data.professor;
+        creditTag.textContent = data.credit;
+        yearTag.textContent = data.year;
+        semesterTag.textContent = data.semester;
+        gradeTag.textContent = data.grade;
+
+        row.appendChild(nameTag);
+        row.appendChild(numberTag);
+        row.appendChild(professorTag);
+        row.appendChild(creditTag);
+        row.appendChild(yearTag);
+        row.appendChild(semesterTag);
+        row.appendChild(gradeTag);
+        subjectList.appendChild(row);
     }
 }
