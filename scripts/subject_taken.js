@@ -71,18 +71,18 @@ class SubjectTaken {
                 grade: grade
             });
         }
+        alert('성적이 저장되었습니다.');
         subjectTaken.viewStudentListForGrade();
-        subject.setSelectSubjectField();
     }
     
     viewStudentListForGrade() {
         var selectedSubject = document.getElementById('select-subject').value;
         subject.setSubjectNo(selectedSubject);
+        document.getElementById("student-grade-list").innerHTML = '';
         if(selectedSubject != '과목선택') {
-            document.getElementById("student-grade-list").innerHTML = '';
             firebase.database().ref()
             .child('users/professor/' + professor.getProfessorNo() + '/subject/' + selectedSubject + '/students')
-            .on('value', function(snapshot) {
+            .once('value', function(snapshot) {
                 snapshot.forEach(function(element) {
                     subjectTaken.createTableDataTag(element.val());
                 })

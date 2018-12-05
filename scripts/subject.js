@@ -255,8 +255,7 @@ class Subject extends Semester {
 
     setSelectSubjectField() {
         var selectSubject = document.getElementById('select-subject');
-        selectSubject.innerHTML = '';
-        firebase.database().ref().child('users/professor/' + professor.getProfessorNo() + '/subject/').on('value', function(snapshot) {
+        firebase.database().ref().child('users/professor/' + professor.getProfessorNo() + '/subject/').once('value', function(snapshot) {
             var defaultOption = document.createElement('option');
             defaultOption.textContent = '과목선택';
             selectSubject.appendChild(defaultOption);
