@@ -22,5 +22,18 @@ class Finance extends Semester {
             }
         });
     }
+
+    setStudentFinanceTable(id) {
+        let tuitionFee = document.getElementById('tuition-fee').textContent;
+        console.log(tuitionFee)
+        firebase.database().ref().child('users/student/' + id).once('value', function(snapshot) {
+            if(snapshot.val()['scholarship'] == 'yes') {
+                document.getElementById('scholarship-fee').textContent = tuitionFee;
+                document.getElementById('total-fee').textContent = '0';
+            } else {
+                document.getElementById('scholarship-fee').textContent = '0';
+                document.getElementById('total-fee').textContent = tuitionFee;
+            }
+        });
+    }
 }
-let finance = new Finance;

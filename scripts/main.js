@@ -3,6 +3,7 @@ let student = new Student;
 let professor = new Professor;
 let subject = new Subject;
 let subjectTaken = new SubjectTaken;
+let finance = new Finance;
 
 firebase.auth().onAuthStateChanged(function (user){
     if (user) {
@@ -72,6 +73,8 @@ function viewSelectedSection(index) {
             subject.displayAppliedSubjectsList(student.getStudentNo());
         } else if(index === 8) {
             subjectTaken.displayStudentGrade(student.getStudentNo());
+        } else if(index === 9) {
+            finance.setStudentFinanceTable(student.getStudentNo());
         }
     }
     var section = document.getElementsByClassName('main-view-content');
