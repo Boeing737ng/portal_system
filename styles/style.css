@@ -311,7 +311,7 @@ button:focus {
 }
 
 /********** 수강신청 **********/
-.apply-container {
+.apply-container, #studets-grade-section {
     text-align: center;
 }
 .plan-header {
