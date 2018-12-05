@@ -1,19 +1,19 @@
 class Subject extends Semester {
-    constructor(subject_name, subject_num, subject_time, professor, subject_grade, year, semester) {
+    constructor(subject_name, subject_num, subject_time, professor, credit, year, semester) {
         super(year, semester)
 
         this.subject_name = subject_name
         this.subject_num = subject_num
         this.subject_time = subject_time
         this.professor = professor
-        this.subject_grade = subject_grade
+        this.credit = credit
     }
 
     getSubjectName() { return this.subject_name }
     getSubjectNum() { return this.subject_num }
     getSubjectTime() { return this.subject_time }
     getProfessor() { return this.professor }
-    getSubjectGrade() { return this.subject_grade }
+    getSubjectCredit() { return this.credit }
     getSubjectYear() { return this.year }
     getSubjectSemester() { return this.semester }
 
@@ -56,7 +56,7 @@ class Subject extends Semester {
             name: subjectInfo[1].value,
             time: subjectInfo[2].value,
             professor: subjectInfo[3].value,
-            grade: subjectInfo[4].value,
+            credit: subjectInfo[4].value,
             year: subjectInfo[5].value,
             semester: subjectInfo[6].value,
         }
@@ -82,7 +82,7 @@ class Subject extends Semester {
             number: subject.getSubjectNum(),
             time: subject.getSubjectTime(),
             professor: subject.getProfessor(),
-            grade: subject.getSubjectGrade(),
+            credit: subject.getSubjectCredit(),
             year: subject.getSubjectYear(),
             semester: subject.getSubjectSemester()
         }).then(function(success) {
@@ -121,7 +121,7 @@ class Subject extends Semester {
         var numberTag = document.createElement('td');
         var timeTag = document.createElement('td');
         var professorTag = document.createElement('td');
-        var gradeTag = document.createElement('td');
+        var creditTag = document.createElement('td');
         var yearTag = document.createElement('td');
         var semesterTag = document.createElement('td');
 
@@ -129,7 +129,7 @@ class Subject extends Semester {
         numberTag.textContent = data.number;
         timeTag.textContent = data.time;
         professorTag.textContent = data.professor;
-        gradeTag.textContent = data.grade;
+        creditTag.textContent = data.credit;
         yearTag.textContent = data.year;
         semesterTag.textContent = data.semester;
 
@@ -137,7 +137,7 @@ class Subject extends Semester {
         row.appendChild(numberTag);
         row.appendChild(timeTag);
         row.appendChild(professorTag);
-        row.appendChild(gradeTag);
+        row.appendChild(creditTag);
         row.appendChild(yearTag);
         row.appendChild(semesterTag);
         subjectList.appendChild(row);
@@ -171,7 +171,7 @@ class Subject extends Semester {
         var numberTag = document.createElement('td');
         var timeTag = document.createElement('td');
         var professorTag = document.createElement('td');
-        var gradeTag = document.createElement('td');
+        var creditTag = document.createElement('td');
         var yearTag = document.createElement('td');
         var semesterTag = document.createElement('td');
         var applyButtonContainer = document.createElement('td');
@@ -194,7 +194,7 @@ class Subject extends Semester {
         numberTag.textContent = data.number;
         timeTag.textContent = data.time;
         professorTag.textContent = data.professor;
-        gradeTag.textContent = data.grade;
+        creditTag.textContent = data.credit;
         yearTag.textContent = data.year;
         semesterTag.textContent = data.semester;
 
@@ -202,7 +202,7 @@ class Subject extends Semester {
         row.appendChild(numberTag);
         row.appendChild(timeTag);
         row.appendChild(professorTag);
-        row.appendChild(gradeTag);
+        row.appendChild(creditTag);
         row.appendChild(yearTag);
         row.appendChild(semesterTag);
         row.appendChild(applyButtonContainer);
