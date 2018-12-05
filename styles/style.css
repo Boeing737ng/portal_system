@@ -84,6 +84,21 @@ table#professor-subjects-table td:nth-child(2) {
 table#professor-subjects-table td:nth-child(3) {
     width: 400px;
 }
+table#students-grade-table td:nth-child(1) {
+    width: 120px;
+}
+table#students-grade-table td:nth-child(2) {
+    width: 120px;
+}
+table#students-grade-table td:nth-child(3) {
+    width: 200px;
+}
+table#students-grade-table td:nth-child(4) {
+    width: 60px;
+}
+table#students-grade-table td:nth-child(5) {
+    width: 100px;
+}
 tbody {
     overflow: auto;
     display: block;
@@ -313,6 +328,7 @@ button:focus {
 /********** 수강신청 **********/
 .apply-container, #studets-grade-section {
     text-align: center;
+    width: fit-content;
 }
 .plan-header {
     margin-top: 0;
