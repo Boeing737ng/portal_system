@@ -200,7 +200,26 @@
 
             <!-- view : 성적처리 -->
             <div class="main-view-content" id="view-manage-grade">
-
+                <div class="vertical-center horizontal-center" id="studets-grade-section">
+                    <div>
+                        <select onchange="subjectTaken.viewStudentListForGrade();" style="float:left;" id="select-subject">
+                            <option selected="selected">과목선택</option>
+                        </select>
+                    </div>
+                    <table class="horizontal-center" id="students-grade-table">
+                        <thead>
+                            <tr>
+                                <td>이름</td>
+                                <td>학번</td>
+                                <td>소속학과</td>
+                                <td>성적</td>
+                                <td>성적부여</td>
+                            </tr>
+                        </thead>
+                        <tbody id="student-grade-list"></tbody>
+                    </table>
+                    <button onclick="subjectTaken.registerGrade();">저장</button>
+                </div>
             </div>
             <!-- view : 강의계획서 관리 -->
             <div class="main-view-content" id="view-manage-subject-plan">

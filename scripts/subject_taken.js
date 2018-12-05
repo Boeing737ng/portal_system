@@ -36,12 +36,13 @@ class SubjectTaken {
                                     credit: snapshot.val().credit,
                                     year: snapshot.val().year,
                                     semester: snapshot.val().semester,
+                                    grade: '-'
                                 }).then(function(success) {
                     
                                 });
                                 subject.displayAppliedSubjectsList(id);
                             });
-                            student.createTableDataTag(element.val());
+                            //student.createTableDataTag(element.val());
                         }
                     }
                 })
@@ -58,20 +59,35 @@ class SubjectTaken {
     }
 
     registerGrade() {
-
+        subject.getSubjectNum();
+        var gradeList = document.getElementsByClassName('subject-grade');
+        var length = gradeList.length; // fix the length to prevent increment of length by firebase update
+        for(var i = 0; i < length; i++) {
+            var grade = gradeList[i].value;
+            var id = gradeList[i].id;
+            firebase.database()
+            .ref('users/professor/' + professor.getProfessorNo() + '/subject/' + subject.getSubjectNum() + '/students/' + id)
+            .update({
+                grade: grade
+            });
+        }
+        subjectTaken.viewStudentListForGrade();
+        subject.setSelectSubjectField();
     }
-
-    handleSavedGrade() {
-        
-    }
+    
     viewStudentListForGrade() {
-        document.getElementById("student-grade-list").innerHTML = '';
-        firebase.database().ref().child('users/student/').on('value', function(snapshot) {
-            snapshot.forEach(function(element) {
-                if(ele)
-                subject.createTableDataTag(element.val());
-            })
-        });
+        var selectedSubject = document.getElementById('select-subject').value;
+        subject.setSubjectNo(selectedSubject);
+        if(selectedSubject != '과목선택') {
+            document.getElementById("student-grade-list").innerHTML = '';
+            firebase.database().ref()
+            .child('users/professor/' + professor.getProfessorNo() + '/subject/' + selectedSubject + '/students')
+            .on('value', function(snapshot) {
+                snapshot.forEach(function(element) {
+                    subjectTaken.createTableDataTag(element.val());
+                })
+            });
+        }
     }
 
     createTableDataTag(data) {
@@ -80,9 +96,10 @@ class SubjectTaken {
         var nameTag = document.createElement('td');
         var numberTag = document.createElement('td');
         var deptTag = document.createElement('td');
-        var creditTag = document.createElement('td');
+        var gradeTag = document.createElement('td');
         var selectTag = document.createElement('td');
         var select = document.createElement('select');
+        var optionDefault = document.createElement('option');
         var option1 = document.createElement('option');
         var option2 = document.createElement('option');
         var option3 = document.createElement('option');
@@ -93,6 +110,7 @@ class SubjectTaken {
         var option8 = document.createElement('option');
         var option9 = document.createElement('option');
 
+        optionDefault.setAttribute('selected','selected');
         option1.value = 'A+';
         option2.value = 'A0';
         option3.value = 'B+';
@@ -103,6 +121,7 @@ class SubjectTaken {
         option8.value = 'D0';
         option9.value = 'F';
 
+        optionDefault.textContent = '-';
         option1.textContent = 'A+';
         option2.textContent = 'A0';
         option3.textContent = 'B+';
@@ -114,12 +133,15 @@ class SubjectTaken {
         option9.textContent = 'F';
 
         nameTag.textContent = data.name;
-        numberTag.textContent = data.studentNumber;
+        numberTag.textContent = data.number;
         deptTag.textContent = data.department;
-        creditTag.textContent = data.credit;
-        select.id = data.studentNumber;
-
+        gradeTag.textContent = data.grade;
+        select.id = data.number;
+        select.className = 'subject-grade';
+        
         selectTag.appendChild(select);
+        select.appendChild(optionDefault);
+        select.appendChild(option1);
         select.appendChild(option1);
         select.appendChild(option2);
         select.appendChild(option3);
@@ -132,7 +154,7 @@ class SubjectTaken {
         row.appendChild(nameTag);
         row.appendChild(numberTag);
         row.appendChild(deptTag);
-        row.appendChild(creditTag);
+        row.appendChild(gradeTag);
         row.appendChild(selectTag);
         studentList.appendChild(row);
     }
