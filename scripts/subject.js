@@ -100,7 +100,7 @@ class Subject extends Semester {
         });
     }
 
-    viewStudentSubject(id) {
+    viewStudentSubjectTimeTable(id) {
         document.getElementById("student-subject-list").innerHTML = '';
         firebase.database().ref().child('users/student/' + id + '/subjects/').on('value', function(snapshot) {
             snapshot.forEach(function(element) {
@@ -222,7 +222,7 @@ class Subject extends Semester {
         });
     }
 
-    viewStudentSubject() {
+    viewProfessorSubjectList() {
         document.getElementById("professor-subject-list").innerHTML = '';
         firebase.database().ref().child('users/professor/' + professor.getProfessorNo() + '/subject/').on('value', function(snapshot) {
             document.getElementById("professor-subject-list").innerHTML = '';
