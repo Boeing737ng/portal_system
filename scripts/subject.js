@@ -9,6 +9,10 @@ class Subject extends Semester {
         this.credit = credit
     }
 
+    setSubjectNo(subjectNo) {
+        this.subject_num = subjectNo;
+    }
+
     getSubjectName() { return this.subject_name }
     getSubjectNum() { return this.subject_num }
     getSubjectTime() { return this.subject_time }
@@ -247,6 +251,22 @@ class Subject extends Semester {
         row.appendChild(numberTag);
         row.appendChild(planTag);
         subjectList.appendChild(row);
+    }
+
+    setSelectSubjectField() {
+        var selectSubject = document.getElementById('select-subject');
+        selectSubject.innerHTML = '';
+        firebase.database().ref().child('users/professor/' + professor.getProfessorNo() + '/subject/').on('value', function(snapshot) {
+            var defaultOption = document.createElement('option');
+            defaultOption.textContent = '과목선택';
+            selectSubject.appendChild(defaultOption);
+            snapshot.forEach(function(element) {
+                var option = document.createElement('option');
+                option.value = element.val().subjectNo;
+                option.textContent = element.val().name;
+                selectSubject.appendChild(option);
+            })
+        });
     }
 
     openSubjectPlanModal(subjectNo) {
