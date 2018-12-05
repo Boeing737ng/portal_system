@@ -21,24 +21,4 @@ class Professor extends User {
     getSubjectList() { return this.subject }
     getUserType() { return this.type }
     getBirthDate() { return this.birthDate }
-
-    onRequestGradeManagement() {
-
-    }
-
-    onReuqestLecturePlanManagement() {
-
-    }
-
-    registerGrade() {
-
-    }
-
-    registerLecturePlan() {
-
-    }
-
-    removeLecturePlan() {
-        
-    }
 }
