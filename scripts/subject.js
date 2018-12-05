@@ -159,9 +159,8 @@ class Subject extends Semester {
     }
 
     displayAppliedSubjectsList(id) {
-        console.log(id)
         document.getElementById("s-subjects-list").innerHTML = '';
-        firebase.database().ref().child('users/student/'+id+'/subjects/').on('value', function(snapshot) {
+        firebase.database().ref().child('users/student/'+id+'/subjects/').once('value', function(snapshot) {
             snapshot.forEach(function(element) {
                 subject.createTableForRegiserSubject(element.val(), 'sel');
             })

@@ -12,9 +12,7 @@ class SubjectTaken {
             firebase.database().ref().child('users/professor').on('value', function(professorList) {
                 professorList.forEach(function(element) {
                     if(element.val().name === professor) {
-                        console.log(element.val().subject[subjectNo].subjectNo, subjectNo)
                         if(element.val().subject[subjectNo].subjectNo == subjectNo) {
-                            console.log(element.val().professorNumber )
                             firebase.database().ref(
                                 'users/professor/' 
                                 + element.val().professorNumber 
@@ -70,7 +68,6 @@ class SubjectTaken {
             .update({
                 grade: grade
             });
-            console.log(id);
             firebase.database()
             .ref('users/student/' + id + '/subjects/' + subject.getSubjectNum())
             .update({
