@@ -86,14 +86,15 @@ class SubjectTaken {
             firebase.database().ref()
             .child('users/professor/' + professor.getProfessorNo() + '/subject/' + selectedSubject + '/students')
             .once('value', function(snapshot) {
+                console.log(snapshot.val())
                 snapshot.forEach(function(element) {
-                    subjectTaken.createTableDataTag(element.val());
+                    subjectTaken.createStudentListForGrade(element.val());
                 })
             });
         }
     }
 
-    createTableDataTag(data) {
+    createStudentListForGrade(data) {
         var studentList = document.getElementById('student-grade-list');
         var row = document.createElement('tr');
         var nameTag = document.createElement('td');
