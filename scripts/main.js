@@ -23,6 +23,7 @@ firebase.auth().onAuthStateChanged(function (user){
                     professor.setName(snapshot.val()[id].name);
                     professor.setProfessorNo(snapshot.val()[id].professorNumber);
                 });
+                viewSelectedSection(4);
             } else {
                 //student = new Student;
                 firebase.database().ref().child('users/student').on('value', function(snapshot) {
@@ -38,6 +39,7 @@ firebase.auth().onAuthStateChanged(function (user){
                     student.setState(snapshot.val()[id].currentState);
                     student.viewMyInfo();
                 }); 
+                viewSelectedSection(5);
             }
         }
     }
