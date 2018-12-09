@@ -253,6 +253,7 @@ class Subject extends Semester {
     }
 
     setSelectSubjectField() {
+        document.getElementById('select-subject').innerHTML = '';
         var selectSubject = document.getElementById('select-subject');
         firebase.database().ref().child('users/professor/' + professor.getProfessorNo() + '/subject/').once('value', function(snapshot) {
             var defaultOption = document.createElement('option');
