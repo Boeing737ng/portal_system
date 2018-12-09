@@ -4,6 +4,14 @@ class Semester {
         this.semester = semester
     }
 
+    setYear(year) {
+        this.year = year;
+    }
+
+    setSemester(semester) {
+        this.semester = semester;
+    }
+
     getYear() {
         return this.year
     }
