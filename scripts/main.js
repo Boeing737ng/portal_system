@@ -15,21 +15,23 @@ firebase.auth().onAuthStateChanged(function (user){
             document.getElementById('user-type-span').textContent = '학사 담당자';
         } else {
             if(id.length == 6) {
-                firebase.database().ref().child('users/professor').on('value', function(snapshot) {
+                firebase.database().ref().child('users/professor').once('value', function(snapshot) {
                     currentUserType = snapshot.val()[id].type;
-                    document.getElementById('id-span').textContent = snapshot.val()[id].professorNumber;
-                    document.getElementById('user-type-span').textContent = snapshot.val()[id].name;
+                    document.getElementById('id-span').textContent = "교변: " + snapshot.val()[id].professorNumber;
+                    document.getElementById('user-type-span').textContent = "교수: " + snapshot.val()[id].name;
 
                     professor.setName(snapshot.val()[id].name);
                     professor.setProfessorNo(snapshot.val()[id].professorNumber);
+                }).then(function(success) {
+                    viewSelectedSection(3);
                 });
-                viewSelectedSection(4);
+                
             } else {
                 //student = new Student;
-                firebase.database().ref().child('users/student').on('value', function(snapshot) {
+                firebase.database().ref().child('users/student').once('value', function(snapshot) {
                     currentUserType = snapshot.val()[id].type;
-                    document.getElementById('id-span').textContent = snapshot.val()[id].studentNumber;
-                    document.getElementById('user-type-span').textContent = snapshot.val()[id].name;
+                    document.getElementById('id-span').textContent = "학번: " + snapshot.val()[id].studentNumber;
+                    document.getElementById('user-type-span').textContent = "학생: " + snapshot.val()[id].name;
 
                     student.setName(snapshot.val()[id].name);
                     student.setStudentNo(snapshot.val()[id].studentNumber);
@@ -38,8 +40,9 @@ firebase.auth().onAuthStateChanged(function (user){
                     student.setUserType(snapshot.val()[id].type);
                     student.setState(snapshot.val()[id].currentState);
                     student.viewMyInfo();
+                }).then(function(success) {
+                    viewSelectedSection(5);
                 }); 
-                viewSelectedSection(5);
             }
         }
     }
@@ -56,13 +59,13 @@ function viewSelectedSection(index) {
             }
         }
     } else if(currentUserType === 'professor') {
-        if(index < 3 || index > 4) {
+        if(index === 3) {
+            subject.viewProfessorSubjectList();
+        } else if(index === 4) {
+            subject.setSelectSubjectField();
+        } else if(index < 3 || index > 4) {
             alert("권한이 없습니다.");
             return;
-        } else if(index === 3) {
-            subject.setSelectSubjectField();
-        } else if(index === 4) {
-            subject.viewProfessorSubjectList();
         }
     } else {
         if(index < 5) {
