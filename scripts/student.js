@@ -117,6 +117,7 @@ class Student extends User {
         }
         firebase.database().ref('/users/student/' + id + '/').update(modifiedState)
         .then(function(success) {
+            document.getElementById('s-state').textContent = student.getStudentState();
             alert('학적 정보가 변경되었습니다.');
         });
         this.studentState = newState
