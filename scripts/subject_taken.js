@@ -9,7 +9,7 @@ class SubjectTaken {
         firebase.database().ref().child('subjects/' + subjectNo).once('value')
         .then(function(snapshot) {
             var professor = snapshot.val().professor;
-            firebase.database().ref().child('users/professor').on('value', function(professorList) {
+            firebase.database().ref().child('users/professor').once('value', function(professorList) {
                 professorList.forEach(function(element) {
                     if(element.val().name === professor) {
                         if(element.val().subject[subjectNo].subjectNo == subjectNo) {
