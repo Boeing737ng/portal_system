@@ -60,9 +60,10 @@ function viewSelectedSection(index) {
         }
     } else if(currentUserType === 'professor') {
         if(index === 3) {
+            subject.setSelectSubjectField();
             subject.viewProfessorSubjectList();
         } else if(index === 4) {
-            subject.setSelectSubjectField();
+            
         } else if(index < 3 || index > 4) {
             alert("권한이 없습니다.");
             return;
