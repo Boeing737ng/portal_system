@@ -17,6 +17,7 @@ class Subject extends Semester {
     getSubjectName() { return this.subject_name }
     getSubjectNum() { return this.subject_num }
     getSubjectTime() { return this.subject_time }
+    getSubjectPlan() { return this.subject_plan }
     getProfessor() { return this.professor }
     getSubjectCredit() { return this.credit }
     getSubjectYear() { return this.year }
@@ -92,6 +93,7 @@ class Subject extends Semester {
                 subjectInfo[0].value,//과목명
                 subjectInfo[1].value,//과목번호
                 subjectInfo[2].value,//강의시간
+                '-',
                 subjectInfo[3].value,//담당교수
                 subjectInfo[4].value,//학점
                 subjectInfo[5].value,//연도
@@ -103,6 +105,7 @@ class Subject extends Semester {
                 name: subject.getSubjectName(),
                 number: subject.getSubjectNum(),
                 time: subject.getSubjectTime(),
+                plan: subject.getSubjectPlan(),
                 professor: subject.getProfessor(),
                 credit: subject.getSubjectCredit(),
                 year: subject.getSubjectYear(),
