@@ -106,8 +106,13 @@ class User {
                             firebase.database().ref(
                                 'users/professor/' + professor.getProfessorNo() + '/subject/' + element.val().number
                                 ).set({
+                                    name: element.val().name,
+                                    time: element.val().time,
                                     subjectNo: element.val().number,
-                                    name: element.val().name
+                                    subjectPlan: element.val().plan,
+                                    credit: element.val().credit,
+                                    year: element.val().year,
+                                    semester: element.val().semester
                             });
                         }
                     })
