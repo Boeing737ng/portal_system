@@ -1,11 +1,12 @@
 class Subject extends Semester {
-    constructor(subject_name, subject_num, subject_time, professor, credit, year, semester) {
+    constructor(subject_name, subject_num, subject_time, subject_plan, professor, credit, year, semester) {
         super(year, semester)
 
         this.subject_name = subject_name
         this.subject_num = subject_num
         this.subject_time = subject_time
         this.professor = professor
+        this.subject_plan = subject_plan
         this.credit = credit
     }
 
@@ -26,6 +27,11 @@ class Subject extends Semester {
         this.registerSubject(subjectInfo);
     }
 
+    handleRemoveSubject() {
+        var subjectNo = document.getElementById("del-subject-no").value;
+        removeSubject(subjectNo);
+    }
+
     handleModifySubjectPlan() {
         var subjectNo = document.getElementById('professor-subject-no').value;
         var subjectPlan = document.getElementById('subject-plan').value;
@@ -40,17 +46,18 @@ class Subject extends Semester {
         });
     }
 
-    removeSubject() {
-        var subjectNo = document.getElementById("del-subject-no").value;
+    removeSubject(subjectNo) {
         if(subjectNo != '') {
             firebase.database().ref('subjects/').child(subjectNo).remove()
             .then(function(success) {
                 $('#del-subject-no').val('');
                 subject.viewSubjectsDetail();
                 alert('삭제가 완료되었습니다.');
+                return 1;
             });
         } else {
             alert('과목번호를 입력해주세요.');
+            return 0;
         }
     }
 
@@ -103,10 +110,11 @@ class Subject extends Semester {
             }).then(function(success) {
                 alert("과목정보가 저장되었습니다.");
                 $('.subject-info').val('');
+                return 1;
             });
         } else {
             alert('과목번호를 입력해주세요.');
-            return;
+            return 0;
         }
     }
 
@@ -115,15 +123,6 @@ class Subject extends Semester {
         firebase.database().ref().child('subjects').on('value', function(snapshot) {
             snapshot.forEach(function(element) {
                 subject.createTableDataTag(element.val(), 'selectAll');
-            })
-        });
-    }
-
-    viewStudentSubjectTimeTable(id) {
-        document.getElementById("student-subject-list").innerHTML = '';
-        firebase.database().ref().child('users/student/' + id + '/subjects/').on('value', function(snapshot) {
-            snapshot.forEach(function(element) {
-                subject.createTableDataTag(element.val(), 'isTaken');
             })
         });
     }
@@ -229,15 +228,20 @@ class Subject extends Semester {
     }
 
     modifySubjectPlan(subjectNo, text) {
-        firebase.database().ref('/subjects/' + subjectNo).update({
-            subjectPlan: text
-        });
-        firebase.database().ref('users/professor/' + professor.getProfessorNo() + '/subject/' + subjectNo).update({
-            subjectPlan: text
-        }).then(function(success) {
-            alert('강의계획 내용이 저장되었습니다.');
-            $('.subject-plan-input').val('');
-        });
+        if(subjectNo != '') {
+            firebase.database().ref('/subjects/' + subjectNo).update({
+                subjectPlan: text
+            });
+            firebase.database().ref('users/professor/' + professor.getProfessorNo() + '/subject/' + subjectNo).update({
+                subjectPlan: text
+            }).then(function(success) {
+                alert('강의계획 내용이 저장되었습니다.');
+                $('.subject-plan-input').val('');
+                return 1;
+            });
+        } else {
+            return 0;
+        }
     }
 
     viewProfessorSubjectList() {
