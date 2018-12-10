@@ -40,11 +40,13 @@ class User {
         .then(function(success) {
             console.log(success);
             window.location.href = 'mainView.html';
+            return 1;
         })
         .catch(function(error) {
             var errorMessage = error.message;
             console.log(errorMessage);
             alert('아이디 또는 비밀번호를 확인하세요.');
+            return 0;
         });
     }
 
@@ -79,9 +81,11 @@ class User {
                 });
                 alert("회원정보가 저장되었습니다.");
                 $('.userInfo').val('');
+                return 1;
             }).catch(function(error) {
                 var errorMessage = error.message;
                 console.log(errorMessage);
+                return 0;
             });
         } else {
             let professor = new Professor(
@@ -120,9 +124,11 @@ class User {
                 });
                 alert("회원정보가 저장되었습니다.");
                 $('.userInfo').val('');
+                return 1;
             }).catch(function(error) {
                 var errorMessage = error.message;
                 console.log(errorMessage);
+                return 0;
             });
         }
     }
