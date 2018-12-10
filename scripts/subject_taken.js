@@ -77,6 +77,15 @@ class SubjectTaken {
         alert('성적이 저장되었습니다.');
         subjectTaken.viewStudentListForGrade();
     }
+
+    viewStudentSubjectTimeTable(studentNo) {
+        document.getElementById("student-subject-list").innerHTML = '';
+        firebase.database().ref().child('users/student/' + studentNo + '/subjects/').on('value', function(snapshot) {
+            snapshot.forEach(function(element) {
+                subject.createTableDataTag(element.val(), 'isTaken');
+            })
+        });
+    }
     
     viewStudentListForGrade() {
         var selectedSubject = document.getElementById('select-subject').value;

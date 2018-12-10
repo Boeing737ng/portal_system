@@ -73,7 +73,7 @@ function viewSelectedSection(index) {
             alert("권한이 없습니다.");
             return;
         } else if(index === 6) {
-            subject.viewStudentSubjectTimeTable(student.getStudentNo());
+            subjectTaken.viewStudentSubjectTimeTable(student.getStudentNo());
         } else if(index === 7) {
             subject.displayAvailableSubejectsList();
             subject.displayAppliedSubjectsList(student.getStudentNo());
