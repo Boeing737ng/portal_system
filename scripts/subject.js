@@ -30,7 +30,7 @@ class Subject extends Semester {
 
     handleRemoveSubject() {
         var subjectNo = document.getElementById("del-subject-no").value;
-        removeSubject(subjectNo);
+        this.removeSubject(subjectNo);
     }
 
     handleModifySubjectPlan() {
@@ -105,16 +105,33 @@ class Subject extends Semester {
                 name: subject.getSubjectName(),
                 number: subject.getSubjectNum(),
                 time: subject.getSubjectTime(),
-                plan: subject.getSubjectPlan(),
+                subjectPlan: subject.getSubjectPlan(),
                 professor: subject.getProfessor(),
                 credit: subject.getSubjectCredit(),
                 year: subject.getSubjectYear(),
                 semester: subject.getSubjectSemester()
             }).then(function(success) {
+                firebase.database().ref().child('users/professor/').on('value', function(snapshot) {
+                    snapshot.forEach(function(element) {
+                        if(element.val().name == subject.getProfessor()) {
+                            firebase.database().ref(
+                                'users/professor/' + element.val().professorNumber + '/subject/' + subject.getSubjectNum() +'/'
+                            ).set({
+                                name: subject.getSubjectName(),
+                                time: subject.getSubjectTime(),
+                                subjectNo: subject.getSubjectNum(),
+                                subjectPlan: subject.getSubjectPlan(),
+                                credit: subject.getSubjectCredit(),
+                                year: subject.getSubjectYear(),
+                                semester: subject.getSubjectSemester()
+                            });
+                        }
+                    })
+                });
                 alert("과목정보가 저장되었습니다.");
                 $('.subject-info').val('');
                 return 1;
-            });
+            })
         } else {
             alert('과목번호를 입력해주세요.');
             return 0;
