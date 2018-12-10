@@ -47,6 +47,7 @@ class Subject extends Semester {
             .then(function(success) {
                 $('#del-subject-no').val('');
                 subject.viewSubjectsDetail();
+                alert('삭제가 완료되었습니다.');
             });
         } else {
             alert('과목번호를 입력해주세요.');
@@ -55,44 +56,58 @@ class Subject extends Semester {
 
     modifySubject() {
         var subjectInfo = document.getElementsByClassName('m-subject-info');
-        var modifiedSubjectInfo = {
-            number: subjectInfo[0].value,
-            name: subjectInfo[1].value,
-            time: subjectInfo[2].value,
-            professor: subjectInfo[3].value,
-            credit: subjectInfo[4].value,
-            year: subjectInfo[5].value,
-            semester: subjectInfo[6].value,
+        if(subjectInfo[0].value == '') {
+            alert('과목번호를 입력해주세요.');
+            return;
+        } else {
+            var modifiedSubjectInfo = {
+                number: subjectInfo[0].value,
+                name: subjectInfo[1].value,
+                time: subjectInfo[2].value,
+                professor: subjectInfo[3].value,
+                credit: subjectInfo[4].value,
+                year: subjectInfo[5].value,
+                semester: subjectInfo[6].value,
+            }
+            firebase.database().ref('/subjects/' + subjectInfo[0].value + '/')
+            .update(modifiedSubjectInfo)
+            .then(function(success) {
+                alert('수정이 완료되었습니다.');
+            });
+            $('.m-subject-info').val('');
+            this.viewSubjectsDetail();
         }
-        firebase.database().ref('/subjects/' + subjectInfo[0].value + '/').update(modifiedSubjectInfo);
-        $('.m-subject-info').val('');
-        this.viewSubjectsDetail();
     }
 
     registerSubject(subjectInfo) {
-        let subject = new Subject(
-            subjectInfo[0].value,//과목명
-            subjectInfo[1].value,//과목번호
-            subjectInfo[2].value,//강의시간
-            subjectInfo[3].value,//담당교수
-            subjectInfo[4].value,//학점
-            subjectInfo[5].value,//연도
-            subjectInfo[6].value,//학기
-        );
-        firebase.database().ref(
-            'subjects/' + subjectInfo[1].value
-        ).set({
-            name: subject.getSubjectName(),
-            number: subject.getSubjectNum(),
-            time: subject.getSubjectTime(),
-            professor: subject.getProfessor(),
-            credit: subject.getSubjectCredit(),
-            year: subject.getSubjectYear(),
-            semester: subject.getSubjectSemester()
-        }).then(function(success) {
-            alert("과목정보가 저장되었습니다.");
-            $('.subject-info').val('');
-        });
+        if(subjectInfo[1].value !='') {
+            let subject = new Subject(
+                subjectInfo[0].value,//과목명
+                subjectInfo[1].value,//과목번호
+                subjectInfo[2].value,//강의시간
+                subjectInfo[3].value,//담당교수
+                subjectInfo[4].value,//학점
+                subjectInfo[5].value,//연도
+                subjectInfo[6].value,//학기
+            );
+            firebase.database().ref(
+                'subjects/' + subjectInfo[1].value
+            ).set({
+                name: subject.getSubjectName(),
+                number: subject.getSubjectNum(),
+                time: subject.getSubjectTime(),
+                professor: subject.getProfessor(),
+                credit: subject.getSubjectCredit(),
+                year: subject.getSubjectYear(),
+                semester: subject.getSubjectSemester()
+            }).then(function(success) {
+                alert("과목정보가 저장되었습니다.");
+                $('.subject-info').val('');
+            });
+        } else {
+            alert('과목번호를 입력해주세요.');
+            return;
+        }
     }
 
     viewSubjectsDetail() {
